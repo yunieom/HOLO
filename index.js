@@ -1,2 +1,2 @@
-console.log("바보")
+console.log("김희산")
 
