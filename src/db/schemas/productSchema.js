@@ -1,9 +1,12 @@
 const mongoose = require("mongoose");
+const { Product } = require("../models/product-model");
+const { Category } = require("../models/category-model");
 
 const productSchema = new mongoose.Schema(
   {
     productId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Product,
       required: true,
       unique: true,
       index: true,
@@ -13,7 +16,8 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     categoryId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Category,
       required: true,
       unique: true,
       index: true,
@@ -40,10 +44,6 @@ const productSchema = new mongoose.Schema(
         required: true,
       },
     ],
-    bigImageUrl: {
-      type: String,
-      required: true,
-    },
     purchaseNum: {
       type: Number,
       required: true,

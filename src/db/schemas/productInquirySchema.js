@@ -1,17 +1,21 @@
 const mongoose = require("mongoose");
+const { Product } = require("../models/product-model");
+const { User } = require("../models/user-model");
 
 const productInquirySchema = new mongoose.Schema(
   {
     productId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Product,
       required: true,
       index: true,
     },
     userId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: User,
       required: true,
     },
-    inquiryId: {
+    inquiryNum: {
       type: Number,
       required: true,
       unique: true,
