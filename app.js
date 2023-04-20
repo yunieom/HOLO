@@ -7,11 +7,11 @@ const userRouter = require("./src/routes/user-router");
 
 const mongoose = require("mongoose");
 
-mongoose.connection.on("connected", () => {
-  console.log("MONGODB SERVER START!");
-})
+// mongoose.connection.on("connected", () => {
+//   console.log("MONGODB SERVER START!");
+// })
 
-mongoose.connect(config.mongoDBUri);
+// mongoose.connect(config.mongoDBUri);
 
 const app = express();
 
