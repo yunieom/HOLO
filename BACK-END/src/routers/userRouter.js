@@ -6,6 +6,7 @@ const userService = require('../services/userService');
 router.post('/register', async (req, res) => {
     // 유저 정보 가져옴
     const userInfo = req.body;
+
     // 정상 처리될 시 가입 응답 전송
     try {
         const newUser = await userService.register(userInfo);

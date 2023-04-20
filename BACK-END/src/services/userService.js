@@ -1,5 +1,8 @@
 const userModel = require('../db/models/userModel'); // user 모델 불러오기
 const bcrypt = require('bcrypt'); // 비밀번호 해쉬화를 위한 bcrypt 불러오기
+const jwt = require('jsonwebtoken'); // jwt 토큰 사용을 위해 모듈 불러오기
+const generateToken = require('../utils/jwt'); // jwt 토큰 생성 파일 불러오기
+
 const saltRounds = 10; // bcrypt에서 사용되는 솔트 라운드 값 설정. 값이 클수록 보안성이 높지만, 처리 속도가 오래걸림.
 
 // 회원가입 로직 구현을 위한 class 생성
@@ -26,8 +29,8 @@ class UserService {
     // 회원가입 로직
     async register(req, res) {
 
-        // req.body에서 필요한 정보 받아옴
-        const { userId, password, email, address, phoneNumber, userName, termsAgreed } = req.body;
+        // req에서 필요한 정보 받아옴
+        const { userId, password, email, address, phoneNumber, userName, termsAgreed } = await req;
 
         // 필수 입력 항목이 누락된 경우 메세지 전송
         if (!userId || !password || !email || !userName) {
@@ -71,7 +74,40 @@ class UserService {
         });
 
         return newUser;
-    }
+    };
+
+    // 로그인 로직 구현
+    async login(req, res) {
+        const { userId, password } = req.body;
+
+        const user = await userModel.findByUserId(userId);
+
+        if (!user) {
+            throw new Error('가입되지 않은 아이디 입니다.');
+        }
+
+        const isMatched = await bcrypt.compare(password, user.password);
+
+        if (!isMatched) {
+            throw new Error('비밀번호가 일치하지 않습니다.');
+        }
+
+        const payload = {
+            userId: user.userId,
+            isAdmin: user.isAdmin,
+        };
+
+        const token = generateToken(payload);
+
+        res.cookie('token', token, { httpOnly: true });
+        res.json({ message: '성공적으로 로그인 되었습니다.', user });
+    };
+
+    // 로그아웃 로직 구현
+    logout(req, res) {
+        res.clearCookie('token'); // 로그아웃시 쿠키 삭제
+        res.json({ message: '로그아웃 되었습니다.' });
+    };
 }
 
 const userService = new UserService();
