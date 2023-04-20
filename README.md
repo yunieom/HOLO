@@ -1,2 +1,1 @@
-# project2.my_first_website
- CRUD 
+# 백엔드 머지 과정... 
