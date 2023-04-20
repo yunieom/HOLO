@@ -1,8 +1,7 @@
 const { Schema } = require('mongoose');
 
-const { Cart } = require('./models');
 //장바구니 아이템은 장바구니에 담긴 물건이 하나 이상일 수 있기 때문에 먼저 상품과 수량을 받습니다. 
-const cartItemSchema = new Schema({
+const CartItemSchema = new Schema({
   productId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product',
@@ -15,8 +14,8 @@ const cartItemSchema = new Schema({
   },
 });
 
-const cartSchema = new Schema({
-    cardId: {
+const CartSchema = new Schema({
+    cartId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cart',
         required: true,
@@ -26,20 +25,18 @@ const cartSchema = new Schema({
         ref: 'User',
         required: true, 
     },
-    items: [cartItemSchema],
+    cartItems: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CartItem',
+        required: true,
+      }],
     totalPrice: {
         type: Number,
         required: true,
         default: 0,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        required: true,
-    },
+},
+{
+    timestamps: true,
 });
 
-
-
-module.exports = {cartSchema, cartItemSchema};
-module.exports = CartSchema;

@@ -1,30 +1,73 @@
 const { Schema } = require('mongoose');
 
-//회의에서 진행된 order_schema 입니다.
-const OrderSchema = new Schema({
-    email: {
-        type: String,
-    },
-    fullName: {
-        type: String,
+//주문상품 스키마
+const OrderItemSchema = new Schema({
+    productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
         required: true,
     },
-    phoneNumber: {
-        type: String,
+    quantity: {
+        type: Number,
         required: true,
+        default: 1,
     },
-    address: {
-        type: String,
-        required: true,
-    },
-    status: {
-        type: String,
-        required: true,
-    },
-    total: {
+    price: {
         type: Number,
         required: true,
     },
-})
+    discountRate: {
+        type: Number,
+        required: true,
+    },
+});
 
-module.exports = OrderSchema;
+const OrderSchema = new Schema({
+   orderId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order',
+        required: true,
+   },
+   userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+   },
+   cartId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Cart',
+        required: true,
+   },
+   orderItems: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'OrderItem',
+        required: true,
+  }],
+   ShippingAddress: {
+        type: String,
+        required: true,
+        default: function() {
+            return this.userId.address;
+        }
+   },
+   status: {
+        type: String,
+        required: true,
+        enum: ['pending', 'processing', 'shipped', 'delivered'],
+        default: 'pending',
+   },
+   totalPrice: {
+        type: Number,
+        required: true,
+   },
+   totalDiscount: {
+        type: Number,
+        required: true,
+   },
+},
+{
+    timestamps: true,
+  
+});
+
+
