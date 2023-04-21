@@ -67,11 +67,6 @@ function checkPassword(e) {
           value="elice"
         />
       </div>
-      <div class="col-sm-3 btn-container">
-        <button type="button" class="btn btn-outline-success" id="modifyNameBtn">
-          변경하기
-        </button>
-      </div>
     </div>
     <div class="mb-3 row">
       <label for="phoneNumber" class="col-sm-4 col-form-label">연락처</label>
@@ -128,14 +123,10 @@ function checkPassword(e) {
 function addFormEventListeners() {
   const newPasswordInput = document.querySelector("#newPassword");
   const newPasswordCheckInput = document.querySelector("#newPasswordCheck");
-  const modifyNameBtn = document.querySelector("#modifyNameBtn");
   const modifyPhoneNumberBtn = document.querySelector("#modifyPhoneNumberBtn");
-  const nameInput = document.querySelector("#name");
   const phoneNumberInput = document.querySelector("#phoneNumber");
   const saveBtn = document.querySelector("#saveBtn");
-  modifyNameBtn.addEventListener("click", function (e) {
-    modifyName(e, nameInput);
-  });
+
   modifyPhoneNumberBtn.addEventListener("click", function (e) {
     modifyPhoneNumber(e, phoneNumberInput);
   });
@@ -162,13 +153,6 @@ function checkNewPassword() {
   } else {
     saveBtn.disabled = true;
   }
-}
-
-function modifyName(e, nameInput) {
-  e.preventDefault();
-  nameInput.readOnly = false;
-  nameInput.className = "form-control";
-  nameInput.focus();
 }
 
 function modifyPhoneNumber(e, phoneNumberInput) {
