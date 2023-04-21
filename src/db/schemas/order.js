@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema } = require("mongoose");
 
 //주문상품 스키마
-const OrderItemSchema = new mongoose.Schema({
+const OrderItemSchema = new Schema({
     productId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
@@ -23,51 +23,50 @@ const OrderItemSchema = new mongoose.Schema({
     },
 });
 
-const OrderSchema = new mongoose.Schema({
-   orderId: {
+const OrderSchema = new Schema({
+    orderId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Order',
         required: true,
-   },
-   userId: {
+    },
+    userId: {
         type: String,
+        ref: 'User',
         required: true,
-   },
-   cartId: {
+    },
+    cartId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cart',
         required: true,
-   },
-   orderItems: [{
+    },
+    orderItems: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'OrderItem',
         required: true,
-  }],
-   ShippingAddress: {
+    }],
+    ShippingAddress: {
         type: String,
         required: true,
-        default: function() {
+        default: function () {
             return this.userId.address;
         }
-   },
-   status: {
+    },
+    status: {
         type: String,
         required: true,
-        enum: ['pending', 'processing', 'shipped', 'delivered','canceled'],
+        enum: ['pending', 'processing', 'shipped', 'delivered', 'canceled'],
         default: 'pending',
-   },
-   totalPrice: {
+    },
+    totalPrice: {
         type: Number,
         required: true,
-   },
-   totalDiscount: {
+    },
+    totalDiscount: {
         type: Number,
         required: true,
-   },
+    },
 },
-{
-    timestamps: true,
-  
-});
+    {
+        timestamps: true,
 
-
+    });
