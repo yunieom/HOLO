@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const { Schema } = require('mongoose');
 
 //장바구니 아이템은 장바구니에 담긴 물건이 하나 이상일 수 있기 때문에 먼저 상품과 수량을 받습니다. 
-const CartItemSchema = new mongoose.Schema({
+const CartItemSchema = new Schema({
   productId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product',
@@ -14,7 +14,7 @@ const CartItemSchema = new mongoose.Schema({
   },
 });
 
-const CartSchema = new mongoose.Schema({
+const CartSchema = new Schema({
     cartId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cart',

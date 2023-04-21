@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const { Schema } = require('mongoose');
 
-const imageSchema = new mongoose.Schema({
+const imageSchema = new Schema({
   imageUrl: {
     type: String,
     required: true

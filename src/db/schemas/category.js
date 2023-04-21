@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const { Schema } = require('mongoose');
 
-const categorySchema = new mongoose.Schema({
+const categorySchema = new Schema({
     categoryId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Category',
