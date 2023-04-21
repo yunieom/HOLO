@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const Cart = require('../db/models/cart-model'); // cart 모델 불러오기
-const Product = require('../db/models/product-model'); // product 모델 불러오기
+const Cart = require('../db/models/cartModel'); // cart 모델 불러오기
+const Product = require('../db/models/productModel'); // product 모델 불러오기
 const bcrypt = require('bcrypt'); // 비밀번호 해쉬화를 위한 bcrypt 불러오기
 const jwt = require('jsonwebtoken'); // jwt 토큰 사용을 위해 모듈 불러오기
 const generateToken = require('../utils/jwt'); // jwt 토큰 생성 파일 불러오기
