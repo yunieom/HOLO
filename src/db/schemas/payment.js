@@ -1,6 +1,6 @@
-const {Schema} = require("mongoose");
+const mongoose = require("mongoose");
 
-const PaymentSchema = new Schema({
+const PaymentSchema = new mongoose.Schema({
     paymentId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Payment',

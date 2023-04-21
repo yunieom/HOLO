@@ -1,11 +1,11 @@
-const { Schema } = require('mongoose');
+const mongoose = require("mongoose");
 
-const UserSchema = new Schema({
-    userId: {
-        type: String,
-        required: true,
-        unique: true,
-    },
+const UserSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true,
+    unique: true,
+},
     password: {
         type: String,
         required: true,

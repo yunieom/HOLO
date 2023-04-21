@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const UserSchema = require('../schemas/userSchema');
+const UserSchema = require('../schemas/user');
 
 // UserSchema를 기반으로 한 User Mongoose 모델 생성
 const User = mongoose.model('users', UserSchema);

@@ -1,12 +1,12 @@
-const { Schema } = require('mongoose');
+const mongoose = require("mongoose");
 
 //주문상품 스키마
-const OrderItemSchema = new Schema({
-    // productId: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Product',
-    //     required: true,
-    // },
+const OrderItemSchema = new mongoose.Schema({
+    productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true,
+    },
     quantity: {
         type: Number,
         required: true,
@@ -22,7 +22,7 @@ const OrderItemSchema = new Schema({
     },
 });
 
-const OrderSchema = new Schema({
+const OrderSchema = new mongoose.Schema({
    orderId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Order',
