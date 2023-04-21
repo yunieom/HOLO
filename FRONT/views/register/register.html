@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./register.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="../layout.css">
+    <script src="../layout.js" type="module"></script>
+    <title>HOLO</title>
+</head>
+<body>
+<div class="container text-center">
+    <form id="register-form-wrapper" class="d-inline-block w-50">
+        <h1 class="fs-4">회원가입</h1>
+        <div class="row g-3" id="id-wrapper">
+            <h2 class="col-3 fs-6">아이디</h2>
+            <div class="col-6">
+                <label for="inputId" class="visually-hidden">id</label>
+                <input type="text" class="form-control" id="inputId" placeholder="아이디를 입력하세요">
+            </div>
+            <button class="col-3 fs-6 btn btn-success">중복확인</button>
+        </div>
+        <div class="row g-3" id="password-wrapper">
+            <h2 class="col-3 fs-6">비밀번호</h2>
+            <div class="col-6">
+                <label for="inputPassword" class="visually-hidden">password</label>
+                <input type="text" class="form-control" id="inputPassword" placeholder="비밀번호를 입력하세요">
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <div class="row g-3" id="password-check-wrapper">
+            <h2 class="col-4 fs-6">비밀번호확인</h2>
+            <input type="text" class="col-8">
+        </div>
+        <div class="row" id="name-wrapper">
+            <h2 class="col-4 fs-6">이름</h2>
+            <input type="text" class="col-8">
+        </div>
+        <div class="row" id="phone-number-wrapper">
+            <h2 class="col-4 fs-6">휴대폰</h2>
+            <input type="text" class="col-8">
+        </div>
+        <div class="row" id="address-wrapper">
+            <h2 class="col-4 fs-6">주소</h2>
+            <input type="text" class="col-5">
+            <button class="col-3 fs-6 btn btn-success">주소찾기</button>
+        </div>
+        <div class="row" id="detailed-address-wrapper">
+            <div class="col-4"></div>
+            <input type="text" class="col-8">
+        </div>
+        <div class="row" id="email-wrapper">
+            <h2 class="col-4 fs-6">이메일</h2>
+            <input type="text" class="col-8">
+        </div>
+        <div class="row" id="term-agree-wrapper">
+            <div class="col-4"></div>
+            <p class="col-5" id="term-agreement">약관에 동의합니다</p>
+            <p class="col-3" id="term-detail">약관보기 ></p>
+        </div>
+        <div class="row" id="submit-wrapper">
+            <div class="col-4"></div>
+            <button class="col-8 btn btn-success" type="submit">가입하기</button>
+        </div>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+</html>
