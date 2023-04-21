@@ -1,12 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
-
-const categorySchema = new Schema({
-    categoryId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Category',
+const categorySchema = new Schema(
+  {
+    categoryNo: {
+      type: Number,
       required: true,
+      unique: true,
+      index: true,
     },
     category: {
       type: String,

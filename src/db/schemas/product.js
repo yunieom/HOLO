@@ -1,20 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
-const imageSchema = new Schema({
-  imageUrl: {
-    type: String,
-    required: true,
-  },
-  thumbnailUrls: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
-});
-
-const productSchema = new Schema({
+const productSchema = new Schema(
+  {
     productId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Product',
@@ -24,10 +12,12 @@ const productSchema = new Schema({
       type: String,
       required: true,
     },
-    categoryId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Category',
+    categoryNo: {
+      type: Number,
       required: true,
+      unique: true,
+      index: true,
+      trim: true,
     },
     price: {
       type: Number,
@@ -44,10 +34,9 @@ const productSchema = new Schema({
     longDesc: {
       type: String,
     },
-    image: [
+    imageUrl: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Image',
+        type: String,
         required: true,
       },
     ],
@@ -60,17 +49,23 @@ const productSchema = new Schema({
       required: true,
       default: 10,
     },
-    productStatus: {
-      type: Boolean,
-      required: true,
-      default: true,
-    },
     originLabel: {
       type: String,
     },
-  },
-  {
+  },{
     timestamps: true,
-  });
+  }
+);
 
-
+const imageSchema = new Schema({
+  imageUrl: {
+    type: String,
+    required: true
+  },
+  thumbnailUrls: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+});
