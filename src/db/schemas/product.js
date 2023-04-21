@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-
-const imageSchema = new mongoose.Schema({
+const imageSchema = new Schema({
   imageUrl: {
     type: String,
     required: true,
@@ -14,7 +14,7 @@ const imageSchema = new mongoose.Schema({
   ],
 });
 
-const productSchema = new mongoose.Schema({
+const productSchema = new Schema({
     productId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Product',

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const UserSchema = require('../schemas/userSchema');
+const UserSchema = require('../schemas/user');
 
 // UserSchema를 기반으로 한 User Mongoose 모델 생성
 const User = mongoose.model('users', UserSchema);
@@ -13,7 +13,7 @@ class UserModel {
 
     // 사용자 ID를 사용하여 사용자 찾기
     async findByUserId(userId) {
-        const user = await User.findOne({ _id: userId });
+        const user = await User.findOne({ userId });
         return user;
     }
 
@@ -35,7 +35,7 @@ class UserModel {
 
     // 사용자 정보 업데이트
     async update({ userId, update }) {
-        const filter = { _id: userId };
+        const filter = { userId };
         const option = { returnOriginal: false };
 
         const updatedUser = await User.findOneAndUpdate(filter, update, option);

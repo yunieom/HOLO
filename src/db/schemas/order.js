@@ -1,7 +1,8 @@
-const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 //주문상품 스키마
-const OrderItemSchema = new Schema({
+const OrderItemSchema = new mongoose.Schema({
     productId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
@@ -22,15 +23,14 @@ const OrderItemSchema = new Schema({
     },
 });
 
-const OrderSchema = new Schema({
+const OrderSchema = new mongoose.Schema({
    orderId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Order',
         required: true,
    },
    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        type: String,
         required: true,
    },
    cartId: {
@@ -53,7 +53,7 @@ const OrderSchema = new Schema({
    status: {
         type: String,
         required: true,
-        enum: ['pending', 'processing', 'shipped', 'delivered'],
+        enum: ['pending', 'processing', 'shipped', 'delivered','canceled'],
         default: 'pending',
    },
    totalPrice: {

@@ -1,4 +1,5 @@
-const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const UserSchema = new Schema({
     userId: {
@@ -22,7 +23,7 @@ const UserSchema = new Schema({
     phoneNumber: {
         type: String,
         required: true,
-        unique: true,
+        unique: false,
     },
     isAdmin: {
         type: Boolean,
