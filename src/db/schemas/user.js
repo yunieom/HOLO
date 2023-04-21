@@ -1,11 +1,11 @@
 const { Schema } = require('mongoose');
 
 const UserSchema = new Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-    },
+  userId: {
+    type: String,
+    required: true,
+    unique: true,
+},
     password: {
         type: String,
         required: true,
@@ -22,7 +22,7 @@ const UserSchema = new Schema({
     phoneNumber: {
         type: String,
         required: true,
-        unique: true,
+        unique: false,
     },
     isAdmin: {
         type: Boolean,

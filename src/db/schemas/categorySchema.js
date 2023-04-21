@@ -1,14 +1,10 @@
-const mongoose = require("mongoose");
-const { Category } = require("../models/category-model");
-
-const categorySchema = new mongoose.Schema(
-  {
+const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
+const categorySchema = new Schema({
     categoryId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: Category,
+      ref: 'Category',
       required: true,
-      unique: true,
-      index: true,
     },
     category: {
       type: String,
@@ -22,5 +18,3 @@ const categorySchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
-module.exports = categorySchema;

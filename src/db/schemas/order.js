@@ -2,11 +2,11 @@ const { Schema } = require('mongoose');
 
 //주문상품 스키마
 const OrderItemSchema = new Schema({
-    productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        required: true,
-    },
+    // productId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Product',
+    //     required: true,
+    // },
     quantity: {
         type: Number,
         required: true,
