@@ -28,7 +28,7 @@ class OrderService {
         order.status = 'canceled';
         await order.save();
 
-        // 취소된 주문 db에서 삭제 (삭제할지 'canceled' 상태로 놔둘지 상의 필요)
+        // 취소된 주문 db에서 삭제 (삭제할지 'canceled' 상태로 놔둘지 상의 필요, 삭제할거라면 delete 메소드를 사용하는게 좋을지도 ?)
         // await Order.deleteOne({ _id: orderId, userId });
 
         return order;
