@@ -1,4 +1,5 @@
-const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const PaymentSchema = new Schema({
     paymentId: {
@@ -12,8 +13,7 @@ const PaymentSchema = new Schema({
         required: true,
     },
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Order',
+        type: String,
         required: true,
     },
     paymentAmount: {
