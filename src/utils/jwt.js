@@ -1,3 +1,4 @@
+//jwt sketleton
 const jwt = require("jsonwebtoken");
 
 // 토큰 발급
