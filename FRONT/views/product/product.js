@@ -8,18 +8,15 @@ const increaseBtn = document.getElementById("increase-btn");
 const mainContent = document.querySelector(".main-content");
 const infoBtn = document.getElementById("info");
 
-// await Api.post('경로', data);
+// async function data() {
+//   return await API.get("/api/products/product");
+// }
 
-async function data() {
-  return await API.get("/api/products/product");
-}
+// async function createInquiries() {
+//   return await API.post("/api/products/inquiries");
+// }
 
-async function createInquiries() {
-  return await API.post("/api/products/inquiries");
-}
-
-console.log(createInquiries());
-
+// 임시 정보
 let menu = {
   product: { productName: "돈가스", price: "19,000" },
   amount: Number(amount.textContent),
