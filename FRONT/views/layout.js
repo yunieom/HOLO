@@ -1,3 +1,5 @@
+const body = document.querySelector("body");
+
 insertHeader();
 insertFooter();
 
@@ -35,7 +37,7 @@ function insertHeader() {
       </nav>
     </header>`;
 
-  document.querySelector("body").insertAdjacentHTML("afterbegin", header);
+  body.insertAdjacentHTML("afterbegin", header);
 }
 
 function insertFooter() {
@@ -56,5 +58,5 @@ function insertFooter() {
       </div>
     </footer>`;
 
-  document.querySelector("body").insertAdjacentHTML("beforeend", footer);
+  body.insertAdjacentHTML("beforeend", footer);
 }

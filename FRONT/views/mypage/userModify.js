@@ -1,10 +1,12 @@
 const passwordInput = document.querySelector("#password");
 const passwordCheckBtn = document.querySelector("#passwordCheckBtn");
+const userModifyForm = document.querySelector("#userModify form");
+let newPasswordInput;
+let newPasswordCheckInput;
+passwordInput.addEventListener("input", handlePasswordInputCheck);
+passwordCheckBtn.addEventListener("click", handlePasswordCheck);
 
-passwordInput.addEventListener("input", checkInput);
-passwordCheckBtn.addEventListener("click", checkPassword);
-
-function checkInput(e) {
+function handlePasswordInputCheck(e) {
   if (e.target.value.length < 8) {
     passwordCheckBtn.disabled = true;
   } else {
@@ -12,13 +14,20 @@ function checkInput(e) {
   }
 }
 
-function checkPassword(e) {
+function handlePasswordCheck(e) {
   e.preventDefault();
 
   // 비밀번호 확인 요청 추가 작업 필요
 
-  // 비밀번호 확인 성공 시 회원정보 수정 폼 innerHTML 변경
-  const userModifyForm = document.querySelector("#userModify form");
+  // 비밀번호 확인 성공 시 회원정보 수정 폼 innerHTML 변경, 회원 정보 전달 추가 작업 필요
+  if (true) {
+    renderUserModifyForm();
+  } else {
+    alert("비밀번호가 일치하지 않습니다.");
+  }
+}
+
+function renderUserModifyForm() {
   const form = `
     <div class="mb-3 row">
       <label for="userId" class="col-sm-4 col-form-label">아이디</label>
@@ -121,43 +130,47 @@ function checkPassword(e) {
 }
 
 function addFormEventListeners() {
-  const newPasswordInput = document.querySelector("#newPassword");
-  const newPasswordCheckInput = document.querySelector("#newPasswordCheck");
+  newPasswordInput = document.querySelector("#newPassword");
+  newPasswordCheckInput = document.querySelector("#newPasswordCheck");
   const modifyPhoneNumberBtn = document.querySelector("#modifyPhoneNumberBtn");
   const phoneNumberInput = document.querySelector("#phoneNumber");
   const saveBtn = document.querySelector("#saveBtn");
 
-  modifyPhoneNumberBtn.addEventListener("click", function (e) {
-    modifyPhoneNumber(e, phoneNumberInput);
-  });
+  modifyPhoneNumberBtn.addEventListener(
+    "click",
+    modifyPhoneNumber(phoneNumberInput)
+  );
 
   // 비밀번호 확인
-  [newPasswordInput, newPasswordCheckInput].forEach((input) => {
-    input.addEventListener("keyup", checkNewPassword);
-  });
+  newPasswordInput.addEventListener("keyup", checkNewPassword);
+  newPasswordCheckInput.addEventListener("keyup", checkNewPassword);
 }
 
 function checkNewPassword() {
-  const newPasswordInput = document.querySelector("#newPassword");
-  const newPasswordCheckInput = document.querySelector("#newPasswordCheck");
   const newPassword = newPasswordInput.value;
   const confirmPassword = newPasswordCheckInput.value;
   if (newPassword !== confirmPassword) {
-    newPasswordCheckInput.className = "form-control is-invalid";
+    newPasswordCheckInput.classList.remove("is-valid");
+    newPasswordCheckInput.classList.add("is-invalid");
   } else {
-    newPasswordCheckInput.className = "form-control is-valid";
+    newPasswordCheckInput.classList.remove("is-invalid");
+    newPasswordCheckInput.classList.add("is-valid");
   }
   // 둘 다 8자리 이상이면 저장 버튼 활성화
-  if (newPassword.length >= 8 && confirmPassword.length >= 8) {
+  if (
+    newPassword.length >= 8 &&
+    confirmPassword.length >= 8 &&
+    newPassword === confirmPassword
+  ) {
     saveBtn.disabled = false;
   } else {
     saveBtn.disabled = true;
   }
 }
 
-function modifyPhoneNumber(e, phoneNumberInput) {
+const modifyPhoneNumber = (phoneNumberInput) => (e) => {
   e.preventDefault();
   phoneNumberInput.readOnly = false;
   phoneNumberInput.className = "form-control";
   phoneNumberInput.focus();
-}
+};
