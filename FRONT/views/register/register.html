@@ -16,54 +16,48 @@
 </head>
 <body>
 <div class="container text-center">
-    <form id="register-form-wrapper" class="d-inline-block w-50">
-        <h1 class="fs-4" id="register">회원가입</h1>
-        <div class="row mb-3" id="id-wrapper">
-            <h2 class="col-3 fs-6">아이디</h2>
+    <form id="register-form-wrapper" class="d-inline-block w-50 text-start px-2">
+        <h1 class="fs-4 mt-5 mb-3 text-center" id="register">회원가입</h1>
+        <div class="row mb-2" id="id-wrapper">
+            <label for="inputId" class="col-3">아이디</label>
             <div class="col-6">
-                <label for="inputId" class="visually-hidden">id</label>
                 <input type="text" class="form-control" id="inputId" placeholder="아이디를 입력하세요">
             </div>
             <button class="col-3 fs-6 btn btn-success">중복확인</button>
         </div>
-        <div class="row mb-3" id="password-wrapper">
-            <h2 class="col-3 fs-6">비밀번호</h2>
-            <div class="col-6">
-                <label for="inputPassword" class="visually-hidden">password</label>
+        <div class="row mb-2" id="password-wrapper">
+            <label for="inputPassword" class="col-3">비밀번호</label>
+            <div class="col-9">
                 <input type="text" class="form-control" id="inputPassword" placeholder="비밀번호를 입력하세요">
             </div>
             <div class="col-3"></div>
         </div>
-        <div class="row mb-3" id="password-check-wrapper">
-            <h2 class="col-3 fs-6">비밀번호확인</h2>
+        <div class="row mb-2" id="password-check-wrapper">
+            <label for="inputPasswordCheck" class="col-3">비밀번호 확인</label>
             <div class="col-6">
-                <label for="inputPasswordCheck" class="visually-hidden">password cheeck</label>
                 <input type="text" class="form-control" id="inputPasswordCheck" placeholder="비밀번호를 한번 더 입력해주세요">
             </div>
         </div>
-        <div class="row mb-3" id="name-wrapper">
-            <h2 class="col-3 fs-6">이름</h2>
+        <div class="row mb-2" id="name-wrapper">
+            <label for="inputName" class="col-3">이름</label>
             <div class="col-6">
-                <label for="inputName" class="visually-hidden">name</label>
                 <input type="text" class="form-control" id="inputName" placeholder="이름을 입력해주세요">
             </div>
         </div>
-        <div class="row mb-3" id="phone-number-wrapper">
-            <h2 class="col-3 fs-6">휴대폰</h2>
+        <div class="row mb-2" id="phone-number-wrapper">
+            <label for="inputPhone" class="col-3">핸드폰</label>
             <div class="col-6">
-                <label for="inputPhone" class="visually-hidden">phone</label>
                 <input type="text" class="form-control" id="inputPhone" placeholder="휴대폰 번호를 입력해주세요">
             </div>
         </div>
-        <div class="row mb-3" id="address-wrapper">
-            <h2 class="col-3 fs-6">주소</h2>
+        <div class="row mb-2" id="address-wrapper">
+            <label for="inputAddress" class="col-3">주소</label>
             <div class="col-6">
-                <label for="inputAddress" class="visually-hidden">address</label>
                 <input type="text" class="form-control" id="inputAddress" placeholder="주소찾기 버튼을 눌러주세요">
             </div>
             <button class="col-3 fs-6 btn btn-success">주소찾기</button>
         </div>
-        <div class="row mb-3" id="detailed-address-wrapper">
+        <div class="row mb-2" id="detailed-address-wrapper">
             <div class="col-3"></div>
             <div class="col-6">
                 <label for="inputDetailedAddress" class="visually-hidden">detailed address</label>
