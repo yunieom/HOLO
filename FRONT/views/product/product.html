@@ -12,8 +12,15 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="product.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../layout.css" />
+    <script src="../layout.js" type="module"></script>
   </head>
   <body>
+    <script type="module" src="./product.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
@@ -26,9 +33,7 @@
           <img src="..." class="rounded float-start" alt="이미지" />
         </div>
         <div class="col">
-          <!-- productName -->
-          <h2>맛있는 고기 돈가스용 안심</h2>
-          <!-- price -->
+          <h2>extra</h2>
           <h3>25,000원</h3>
           <p>배송</p>
           <p>판매단위</p>
@@ -37,14 +42,16 @@
           <div id="itemCount">
             <p>맛있는 고기 돈가스용 안심</p>
             <button
+              id="decrease-btn"
               type="button"
               class="btn btn-secondary btn-sm"
               style="height: 1.5rem"
             >
               -
             </button>
-            <p>1</p>
+            <p id="amount">1</p>
             <button
+              id="increase-btn"
               type="button"
               class="btn btn-secondary btn-sm"
               style="height: 1.5rem"
@@ -65,58 +72,18 @@
     <div class="container">
       <div class="row">
         <div id="select-menu" class="btn-group">
-          <button type="button" class="btn btn-secondary btn-lr">
+          <button id="info" type="button" class="btn btn-success">
             상세정보
           </button>
-          <button type="button" class="btn btn-secondary btn-lr">
+          <button id="inquiries" type="button" class="btn btn-secondary btn-lr">
             상품문의
           </button>
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container main-content">
       <div class="row">
         <img src="..." class="rounded float-start" alt="이미지" />
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="question-box">
-          <table class="table table-sm table-hover">
-            <thead class="table-light">
-              <tr>
-                <th scope="col">순서</th>
-                <th scope="col">제목</th>
-                <th scope="col">작성자</th>
-                <th scope="col">작성일</th>
-                <th scope="col">답변상태</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>진짜 맛있나요? 진짜 맛있나요? 진짜 맛있나요?</td>
-                <td>퓨라늄</td>
-                <td>23.04.18</td>
-                <td>답변완료</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>생으로 먹어도 맛있네요</td>
-                <td>김소현</td>
-                <td>23.04.19</td>
-                <td>미응답</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>사이즈가 딱 맞네요!</td>
-                <td>최현준</td>
-                <td>23.04.19</td>
-                <td>미응답</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
   </body>
