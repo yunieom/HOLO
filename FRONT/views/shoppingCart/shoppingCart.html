@@ -18,6 +18,7 @@
     />
     <link rel="stylesheet" href="../layout.css" />
     <script src="../layout.js" type="module"></script>
+    <script src="./shoppingCart.js" defer></script>
   </head>
   <body>
     <script
@@ -85,15 +86,15 @@
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                      맛있는고기 돈가스용안심
+                      <p class="cart-item">맛있는고기 돈가스용안심</p>
                     </label>
                   </div>
                 </div>
                 <div class="col">
-                  <div>1</div>
+                  <p class="amount">1</p>
                 </div>
                 <div class="col">
-                  <div>25,000원</div>
+                  <p class="product-price">25,000원</p>
                 </div>
                 <div class="col">
                   <div>3,000원</div>
@@ -117,7 +118,7 @@
         </div>
         <div class="col">
           <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button">구매하기</button>
+            <button class="btn btn-primary purchase-btn" type="button">구매하기</button>
           </div>
         </div>
       </div>
