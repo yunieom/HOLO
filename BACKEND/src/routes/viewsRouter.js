@@ -21,7 +21,7 @@ viewsRouter.use("/shoppingCart", serveStatic("shoppingCart"));
 viewsRouter.use("/", serveStatic(""));
 
 function serveStatic(resource) {
-    const resourcePath = path.join(__dirname, `../views/${resource}`);
+    const resourcePath = path.join(__dirname, `../../../FRONT/views/${resource}`);
     const option = { index: `${resource}.html` };
 
     return express.static(resourcePath, option);
