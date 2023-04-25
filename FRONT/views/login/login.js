@@ -33,8 +33,7 @@ async function handleLogin(e) {
         alert(`${userId}님, 어서오세요!`);
         window.location.href = "/";
     }catch(err){
-        console.log(err.stack);
-        alert(`${err.message}`);
+        alert(err.message);
     }
 }
 function toRegisterPage(e){

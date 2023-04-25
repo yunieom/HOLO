@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
         await userService.login(req.body, res);
     } catch (err) {
         console.log(err);
-        res.status(400).send(`${err}`);
+        res.status(400).json({ message: err.message });
     }
 });
 
