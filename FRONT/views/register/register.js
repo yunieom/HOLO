@@ -1,4 +1,4 @@
-import * as Api from "../../api/api.js";
+import * as Api from "../api.js";
 
 const inputId = document.querySelector("#inputId");
 const idConfirmButton = document.querySelector("#idConfirmButton");

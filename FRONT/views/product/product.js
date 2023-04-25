@@ -1,4 +1,4 @@
-import * as API from "../../api/api.js";
+import * as API from "../api.js";
 
 const addCartItemBtn = document.getElementById("add-cart-item-btn");
 const inquiriesBtn = document.getElementById("inquiries");
