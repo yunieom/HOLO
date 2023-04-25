@@ -1,5 +1,5 @@
 const express = require('express');
-const ProductService = require('../services/productService');
+const ProductService = require('../service/productService');
 
 class ProductRouter {
   constructor() {

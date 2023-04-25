@@ -14,7 +14,7 @@ viewsRouter.use("/userModify", serveStatic("userModify"));
 viewsRouter.use("/payment", serveStatic("payment"));
 viewsRouter.use("/adminpage", serveStatic("adminpage"));
 viewsRouter.use("/product", serveStatic("product"));
-viewsRouter.use("/productList", serveStatic("producList"));
+viewsRouter.use("/productList", serveStatic("productList"));
 viewsRouter.use("/shoppingCart", serveStatic("shoppingCart"));
 
 // views 폴더의 최상단 파일 (사진, favicon 등) 라우팅
