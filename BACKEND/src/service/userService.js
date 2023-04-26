@@ -26,6 +26,18 @@ class UserService {
         return emailRegex.test(email);
     }
 
+    // userId 검사 함수: 영어 소문자와 숫자만 입력받으며, 최대 길이는 12글자 까지 허락
+    #isValidUserId(userId) {
+        const userIdRegex = /^[a-z0-9]{1,12}$/; // 영어 소문자와 숫자만 허용하며, 길이는 최대 12글자인 정규식
+        return userIdRegex.test(userId);
+    }
+
+    // 전화번호 검사 함수: 숫자만 입력받으며, 길이는 10~11글자 허락
+    #isValidPhoneNumber(phoneNumber) {
+        const phoneNumberRegex = /^\d{10,11}$/; // 숫자만 허용하며, 길이는 10~11글자인 정규식
+        return phoneNumberRegex.test(phoneNumber);
+    }
+
     // 회원가입 로직
     async register(req, res) {
 
@@ -35,6 +47,10 @@ class UserService {
         // 필수 입력 항목이 누락된 경우 메세지 전송
         if (!userId || !password || !email || !name || !phoneNumber) {
             throw new Error('아이디, 비밀번호, 이메일, 이름, 전화번호를 모두 입력해주세요.');
+        }
+
+        if (!this.#isValidUserId(userId)) {
+            throw new Error('아이디는 영어 소문자와 숫자만 입력 가능하며, 최대 길이는 12글자입니다.');
         }
 
         if (!this.#isValidPassword(password)) {
@@ -47,6 +63,10 @@ class UserService {
 
         if (!this.#isValidEmail(email)) {
             throw new Error('올바른 이메일 형식이 아닙니다.');
+        }
+
+        if (!this.#isValidPhoneNumber(phoneNumber)) {
+            throw new Error('전화번호는 숫자만 입력 가능하며, 길이는 10~11글자입니다.');
         }
 
         if (!termsAgreed) {
