@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const productService = require('../service/productService');
+const upload = require('../middlewares/multer');
 
 // ********** 관리자 페이지 입니다. **********
 // 관리자 카테고리 추가, 됨
@@ -13,10 +14,10 @@ router.patch('/admin/category/:categoryId', productService.updateCategory)
 router.delete('/admin/category/:categoryId', productService.deleteCategory)
 
 // 관리자 상품 추가, 됨
-router.post('/admin', productService.addProduct);
+router.post('/admin', upload.array('image', 10), productService.addProduct);
 
 // 관리자 상품 수정, 됨
-router.patch('/admin/:productId', productService.updateProduct);
+router.patch('/admin/:productId', upload.array('image', 10), productService.updateProduct);
 
 // 관리자 상품 삭제, 됨
 router.delete('/admin/:productId', productService.deleteProduct);
