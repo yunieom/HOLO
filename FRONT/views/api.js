@@ -9,13 +9,15 @@ async function get(endpoint, params = "") {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
   });
-
+  console.log('요청 보냄');
   // 응답 코드가 4XX 계열일 때 (400, 403 등)
   if (!res.ok) {
+    console.log('error!');
     const errorContent = await res.json();
-    const { reason } = errorContent;
+    console.log(errorContent);
+    const { message } = errorContent;
 
-    throw new Error(reason);
+    throw new Error(message);
   }
 
   const result = await res.json();
@@ -40,6 +42,7 @@ async function post(endpoint, data) {
     },
     body: bodyData,
   });
+
   // 응답 코드가 4XX 계열일 때 (400, 403 등)
   if (!res.ok) {
     const errorContent = await res.json();
