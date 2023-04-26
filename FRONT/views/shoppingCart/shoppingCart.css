@@ -38,3 +38,8 @@
 .d-grid .gap-2 {
   text-align: left;
 }
+
+#itemCount {
+  display: flex;
+  justify-content: space-around;
+}
