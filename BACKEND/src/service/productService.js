@@ -1,6 +1,7 @@
 const { Category } = require('../db/models/categoryModel');
 const { Product } = require('../db/models/productModel');
 const errorHandler = require('../middlewares/error-handler')
+const fs = require('fs-extra');
 
 const productService = {
   // 관리자 카테고리 추가
@@ -141,8 +142,15 @@ const productService = {
         imagePaths.push(imagePath);
       }
     }
-    // 기존 이미지와 새로운 이미지 합치기
-    const allImagePaths = updatedProduct.imagePaths.concat(imagePaths);
+
+    // 기존 이미지 삭제
+    const existingImagePaths = updatedProduct.imagePaths;
+    for (const imagePath of existingImagePaths) {
+      await fs.unlink(imagePath); // 이미지 파일 삭제
+    }
+
+    // 새로운 이미지 저장
+    const allImagePaths = imagePaths;
     // 이미지 정보 업데이트
     const updatedProductWithImages = await Product.findByIdAndUpdate(
       productId,
