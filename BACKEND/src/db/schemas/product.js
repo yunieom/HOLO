@@ -31,7 +31,7 @@ const productSchema = new Schema(
     longDesc: {
       type: String,
     },
-    imageUrl: [
+    imagePath: [
       {
         type: String,
         required: true,

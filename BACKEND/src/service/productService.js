@@ -65,7 +65,7 @@ const productService = {
         discountRate, 
         shortDesc, 
         longDesc, 
-        imageUrl, 
+        imagePath, 
         purchaseNum, 
         stock, 
         originLabel } = req.body;
@@ -77,7 +77,7 @@ const productService = {
         discountRate, 
         shortDesc, 
         longDesc, 
-        imageUrl, 
+        imagePath, 
         purchaseNum, 
         stock, 
         originLabel }
@@ -106,7 +106,7 @@ const productService = {
         discountRate, 
         shortDesc, 
         longDesc, 
-        imageUrl, 
+        imagePath, 
         purchaseNum, 
         stock, 
         originLabel } = req.body;
@@ -118,7 +118,7 @@ const productService = {
         discountRate, 
         shortDesc, 
         longDesc, 
-        imageUrl, 
+        imagePath, 
         purchaseNum, 
         stock, 
         originLabel };

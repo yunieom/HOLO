@@ -38,37 +38,37 @@ router.get('/popular', productService.getPopularProducts)
 // 사용자 상품 상세페이지
 router.get('/:productId', productService.getProductDetail)
 
-// 상품 문의 생성
-router.post("/create-inquiries", async (req, res) => {
-  const inquiry = req.body;
-  const savedInquiry = await productInquiryService.createProductInquiry(
-    inquiry
-  );
-  res.json(savedInquiry);
-});
+// // 상품 문의 생성
+// router.post("/create-inquiries", async (req, res) => {
+//   const inquiry = req.body;
+//   const savedInquiry = await productInquiryService.createProductInquiry(
+//     inquiry
+//   );
+//   res.json(savedInquiry);
+// });
 
-// 상품 문의 수정
-router.patch("/edit-inquiries/:inquiryId", async (req, res) => {
-  const inquiryId = req.params.inquiryId;
-  const updatedInquiry = req.body;
-  const updated = await productInquiryService.updateProductInquiry(
-    inquiryId,
-    updatedInquiry
-  );
-  res.json(updated);
-});
+// // 상품 문의 수정
+// router.patch("/edit-inquiries/:inquiryId", async (req, res) => {
+//   const inquiryId = req.params.inquiryId;
+//   const updatedInquiry = req.body;
+//   const updated = await productInquiryService.updateProductInquiry(
+//     inquiryId,
+//     updatedInquiry
+//   );
+//   res.json(updated);
+// });
 
-// 상품 문의 삭제
-router.delete("/delete-inquiries/:inquiryId", async (req, res) => {
-  const inquiryId = req.params.inquiryId;
-  const deletedInquiry = await productInquiryService.deleteProductInquiry(
-    inquiryId
-  );
-  res.status(200).json({
-    message: "문의가 삭제되었습니다.",
-    order: deletedInquiry,
-  });
-});
+// // 상품 문의 삭제
+// router.delete("/delete-inquiries/:inquiryId", async (req, res) => {
+//   const inquiryId = req.params.inquiryId;
+//   const deletedInquiry = await productInquiryService.deleteProductInquiry(
+//     inquiryId
+//   );
+//   res.status(200).json({
+//     message: "문의가 삭제되었습니다.",
+//     order: deletedInquiry,
+//   });
+// });
 
 
 
