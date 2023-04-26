@@ -33,14 +33,9 @@ class UserService {
         const { userId, password, email, address, phoneNumber, name, termsAgreed } = req;
 
         // 필수 입력 항목이 누락된 경우 메세지 전송
-        if (!userId || !password || !email || !name) {
-            throw new Error('아이디, 비밀번호, 이메일, 이름을 모두 입력해주세요.');
+        if (!userId || !password || !email || !name || !phoneNumber) {
+            throw new Error('아이디, 비밀번호, 이메일, 이름, 전화번호를 모두 입력해주세요.');
         }
-
-        // const existingUserId = await userModel.findByUserId(userId);
-        // if (existingUserId) {
-        //     throw new Error('중복된 아이디입니다.');
-        // }
 
         if (!this.#isValidPassword(password)) {
             throw new Error('비밀번호는 최소 8자리 이상이며, 특수문자를 포함해야 합니다.');
