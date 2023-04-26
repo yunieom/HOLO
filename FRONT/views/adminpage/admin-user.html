@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../layout.css" />
     <link rel="stylesheet" href="./adminpage.css" />
     <script src="../layout.js" type="module"></script>
-    <script src="admin-usermanage.js" type="module" defer></script>
+    <script src="admin-user.js" type="module" defer></script>
   </head>
   <body>
     <main>
@@ -28,15 +28,15 @@
           <h3>Admin Page</h3>
           <nav class="mypage-navbar">
             <ul>
-              <li><a href="#product" >상품 관리</a></li>
-              <li><a href="#user" class="active">회원 관리</a></li>
-              <li><a href="#order">주문 관리</a></li>
+              <li><a href="/adminpage/product">상품 관리</a></li>
+              <li><a href="/adminpage/user" class="active">회원 관리</a></li>
+              <li><a href="/adminpage/order">주문 관리</a></li>
             </ul>
           </nav>
         </div>
         <div class="contents">
           <div class="menu-title">
-            <h3> 회원 목록</h3>
+            <h3>회원 목록</h3>
           </div>
 
           <div id="userList" class="menu-contents">
@@ -56,27 +56,45 @@
                   <td>홍길동</td>
                   <td>100,000원</td>
                   <td>2022-01-01</td>
-                  <td><button type="button" class="btn btn-outline-success"  data-id="${userId}">
-                    삭제
-                  </button></td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-outline-success"
+                      data-id="${userId}"
+                    >
+                      삭제
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <td>user2</td>
                   <td>김철수</td>
                   <td>50,000원</td>
                   <td>2022-02-15</td>
-                  <td><button type="button" class="btn btn-outline-success"  data-id="${userId}">
-                    삭제
-                  </button></td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-outline-success"
+                      data-id="${userId}"
+                    >
+                      삭제
+                    </button>
+                  </td>
                 </tr>
                 <tr>
                   <td>user3</td>
                   <td>이영희</td>
                   <td>200,000원</td>
                   <td>2022-03-10</td>
-                  <td><button type="button" class="btn btn-outline-success"  data-id="${userId}">
-                    삭제
-                  </button></td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-outline-success"
+                      data-id="${userId}"
+                    >
+                      삭제
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
