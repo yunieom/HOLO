@@ -1,4 +1,4 @@
-// import * as API from "/api/apiTemplate.js";
+// import * as API from "/api/api.js";
 
 const addCartItemBtn = document.getElementById("add-cart-item-btn");
 const inquiriesBtn = document.getElementById("inquiries");
@@ -14,7 +14,7 @@ const price = document.querySelector(".price");
 let productQuantity = 1;
 
 async function getData() {
-  const res = await fetch(`/api/product//1`, {
+  const res = await fetch(`/api/products/1`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
@@ -28,7 +28,6 @@ async function getData() {
 }
 
 const data = await getData();
-console.log(data);
 
 // setStorage
 const addCartItemBtnHandler = () => {

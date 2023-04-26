@@ -1,10 +1,10 @@
-const { Product } = require('../db/models/productModel');
+const { Product } = require("../db/models/productModel");
 
 class ProductService {
   // 새 제품을 생성하고 db에 저장
   async createProduct(productData) {
     try {
-      const product = new Product(productData)
+      const product = new Product(productData);
       const savedProduct = await product.save();
       return savedProduct;
     } catch (error) {
