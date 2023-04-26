@@ -95,3 +95,19 @@ label {
   font-size: 18px;
   text-align: right;
 }
+
+.order-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-detail p {
+  margin: 5px;
+}
+
+.order-detail > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+}
