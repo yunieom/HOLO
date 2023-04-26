@@ -41,7 +41,7 @@ class OrderService {
         shippingAddress,
         totalPrice,
         totalDiscount,
-        status: "processing",
+        status: "pending",
       });
       // 상품 재고 감소
       for (const item of orderItems) {
@@ -52,6 +52,11 @@ class OrderService {
     } else {
       throw new Error("상품 재고가 부족합니다.");
     }
+  }
+
+  // 주문상태변경
+  async updateOrderStatus(orderId, status) {
+    await orderModel.updateOrderStatus(orderId, status);
   }
   // 비회원 주문조회 (테스트 완료)
   async getOrder(orderId, email) {

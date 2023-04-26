@@ -210,12 +210,10 @@ const productService = {
           .status(404)
           .json({ message: "조회된 할인 상품이 없습니다." });
       }
-      res
-        .status(200)
-        .json({
-          message: "할인 상품 목록 조회 성공",
-          data: discountedProducts,
-        });
+      res.status(200).json({
+        message: "할인 상품 목록 조회 성공",
+        data: discountedProducts,
+      });
     } catch (error) {
       errorHandler(error, req, res, next);
     }
