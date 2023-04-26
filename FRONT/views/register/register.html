@@ -12,6 +12,9 @@
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"/>
     <link rel="stylesheet" href="../layout.css">
     <script src="../layout.js" type="module"></script>
+    <script src="register.js" type="module"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="../searchAddress.js" defer></script>
     <title>HOLO</title>
 </head>
 <body>
@@ -54,19 +57,19 @@
             </div>
         </div>
         <div class="row mb-2">
-            <label for="inputAddress" class="col-3">주소</label>
+            <label for="address" class="col-3">주소</label>
             <div class="col-6">
-                <input type="text" class="form-control" id="inputAddress" placeholder="주소찾기 버튼을 눌러주세요">
+                <input type="text" class="form-control" id="address" placeholder="주소찾기 버튼을 눌러주세요">
             </div>
             <div class="col-3 ps-0">
-                <button class="btn btn-success w-100" id="addressFindButton">주소찾기</button>
+                <button class="btn btn-success w-100" id="searchAddressBtn">주소찾기</button>
             </div>
         </div>
         <div class="row mb-2">
             <div class="col-3"></div>
             <div class="col-9">
-                <label for="inputDetailedAddress" class="visually-hidden">detailed address</label>
-                <input type="text" class="form-control" id="inputDetailedAddress" placeholder="상세주소를 입력해주세요">
+                <label for="detailAddress" class="visually-hidden">detailed address</label>
+                <input type="text" class="form-control" id="detailAddress" placeholder="상세주소를 입력해주세요">
             </div>
         </div>
         <div class="row mb-3">
@@ -93,7 +96,6 @@
         </div>
     </form>
 </div>
-<script src="register.js" type="module"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
