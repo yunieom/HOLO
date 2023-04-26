@@ -6,14 +6,14 @@ const productQuantity = document.querySelector(".quantity");
 const menu = JSON.parse(localStorage.getItem("menu"));
 console.log(typeof menu);
 
-// const purchaseBtnHandler = () => {
-//   const { productName, price } = menu.orderItems;
-//   const { quantity } = menu.orderItems;
+const purchaseBtnHandler = () => {
+  const { productName, price } = menu.orderItems;
+  const { quantity } = menu.orderItems;
 
-//   cartItem.innerText = productName;
-//   productPrice.innerText = price;
-//   productQuantity.innerText = quantity;
-// };
+  cartItem.innerText = productName;
+  productPrice.innerText = price;
+  productQuantity.innerText = quantity;
+};
 
 //
 // async function getItem() {}
@@ -25,7 +25,6 @@ menu.forEach(
   // productPrice.innerText = price;
   // productQuantity.innerText = quantity;
 );
-const purchaseBtnHandler = () => {};
 
 //   // const { productName, price } = menu.orderItems;
 //   // const { amount } = menu;
