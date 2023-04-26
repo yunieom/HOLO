@@ -18,6 +18,7 @@
     />
     <link rel="stylesheet" href="../layout.css" />
     <script src="../layout.js" type="module"></script>
+    <script src="./shoppingCart.js" type="module"></script>
   </head>
   <body>
     <script
@@ -96,7 +97,7 @@
                   </div>
                 </div>
                 <div class="col">
-                  <div style="text-align: center">수량</div>
+                  <div class="quantity" style="text-align: center">수량</div>
                 </div>
                 <div class="col">
                   <div style="text-align: center">상품금액</div>
@@ -138,7 +139,7 @@
     <div class="container text-left" style="margin-bottom: 20px;">
       <div class="row" style="align-items: center">
         <div class="col">
-          <div style="text-align: right">총 금액</div>
+          <div class="product-price" style="text-align: right">총 금액</div>
         </div>
         <div class="col">
           <div>000원</div>
@@ -148,7 +149,7 @@
         </div>
         <div class="col">
           <div class="d-grid gap-2" style="text-align: left">
-            <button class="btn btn-primary" type="button">구매하기</button>
+            <button class="btn btn-primary purchase-btn" type="button">구매하기</button>
           </div>
         </div>
       </div>
