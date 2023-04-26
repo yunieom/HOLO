@@ -38,6 +38,9 @@ router.get('/popular', productService.getPopularProducts)
 // 사용자 상품 상세페이지
 router.get('/:productId', productService.getProductDetail)
 
+
+module.exports = router;
+
 // // 상품 문의 생성
 // router.post("/create-inquiries", async (req, res) => {
 //   const inquiry = req.body;
@@ -69,7 +72,3 @@ router.get('/:productId', productService.getProductDetail)
 //     order: deletedInquiry,
 //   });
 // });
-
-
-
-module.exports = router;
