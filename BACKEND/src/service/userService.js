@@ -124,14 +124,14 @@ class UserService {
         const token = req.cookies.token;
 
         if (!token) {
-            res.status(400).json({ message: '토큰이 없습니다. 이미 로그아웃 상태일 수 있습니다.' });
+            res.status(400).json({ message: '토큰이 없습니다. 로그인 상태를 확안하세요.' });
             return;
         }
 
-        try {
-            jwt.verify(token, secretKey);
-        } catch (error) {
-            res.status(401).json({ message: '잘못된 토큰입니다. 로그인한 유저가 아닐 수 있습니다.' });
+        const decoded = jwt.decode(token);
+
+        if (!decoded) {
+            res.status(401).json({ message: '잘못된 토큰입니다. 로그인 상태를 확인하세요.' });
             return;
         }
 
