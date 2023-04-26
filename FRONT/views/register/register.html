@@ -34,7 +34,7 @@
         <div class="row mb-2" id="passwordWrapper">
             <label for="inputPassword" class="col-3">비밀번호</label>
             <div class="col-9">
-                <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호를 입력하세요">
+                <input type="password" class="form-control" id="inputPassword" placeholder="특수문자 포함 8자리 이상 비밀번호">
             </div>
             <div class="col-3"></div>
         </div>
@@ -53,13 +53,13 @@
         <div class="row mb-2">
             <label for="inputPhone" class="col-3">핸드폰</label>
             <div class="col-9">
-                <input type="text" class="form-control" id="inputPhone" placeholder="휴대폰 번호를 입력해주세요">
+                <input type="tel" class="form-control" id="inputPhone" placeholder="010부터 숫자만 입력" maxlength="13">
             </div>
         </div>
         <div class="row mb-2">
             <label for="address" class="col-3">주소</label>
             <div class="col-6">
-                <input type="text" class="form-control" id="address" placeholder="주소찾기 버튼을 눌러주세요">
+                <input type="text" disabled class="form-control" id="address" placeholder="주소찾기 버튼을 눌러주세요">
             </div>
             <div class="col-3 ps-0">
                 <button class="btn btn-success w-100" id="searchAddressBtn">주소찾기</button>

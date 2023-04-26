@@ -11,11 +11,12 @@ const inputDetailedAddress = document.querySelector("#detailAddress");
 const inputEmail = document.querySelector("#inputEmail");
 const registerButton = document.querySelector("#registerButton");
 const termAgreement = document.querySelector("#termAgreement");
+const registerForm = document.querySelector("#registerFormWrapper");
 
 // id 입력 안하면 중복확인 버튼 비활성화
 function disableConfirmButton() {
     const id = inputId.value;
-    idConfirmButton.classList.toggle("disabled", !id);
+    idConfirmButton.classList.toggle("disabled", !id || inputId.readOnly);
 }
 // id 중복확인 여부
 let idDuplicated = true;
@@ -32,7 +33,7 @@ async function handleIdConfirm(e) {
             // 중복되지 않은 아이디인 경우 id input과 button 비활성화
             alert(result.message);
             idDuplicated = false;
-            inputId.classList.replace("form-control", "form-control-plaintext");
+            inputId.disabled = true;
             idConfirmButton.classList.toggle("disabled");
         }
     } catch {
@@ -67,6 +68,12 @@ async function handleRegister(e) {
         alert(err.message);
     }
 }
+function pressEnter(e){
+    if(e.code === 'Enter'){
+        e.preventDefault();
+        registerButton.click();
+    }
+}
 
 // id 입력 전에 중복확인 버튼 비활성화
 inputId.addEventListener("keyup", disableConfirmButton);
@@ -74,3 +81,5 @@ inputId.addEventListener("keyup", disableConfirmButton);
 idConfirmButton.addEventListener("click", handleIdConfirm);
 // 회원가입 버튼 클릭시
 registerButton.addEventListener("click", handleRegister);
+// 엔터키를 회원가입 버튼에
+registerForm.addEventListener("keydown", pressEnter);
