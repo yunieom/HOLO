@@ -10,8 +10,10 @@ const receiverEmail = document.querySelector("#receiverEmail");
 const receiverPhoneNumber = document.querySelector("#receiverPhoneNumber");
 const userAddress = document.querySelector("#address");
 const receiverRequirement = document.querySelector("#receiverRequirement");
+const paymentBtn = document.querySelector("#paymentBtn");
 const isLogin = sessionStorage.getItem('token');
 
+paymentBtn.addEventListener("click", handlePayment);
 // user-info에서 get 받아오기
 async function getData() {
     try {
@@ -45,6 +47,7 @@ if (isLogin) {
             </section>
     `
     document.querySelector("main").insertAdjacentHTML("afterbegin", userInfo);
+    // 구매자 정보와 동일 버튼
     infoBtn.addEventListener("click", (e) => {
         e.preventDefault();
         receiverName.value = name;
@@ -54,5 +57,10 @@ if (isLogin) {
     });
 } else {
     infoBtn.style.display = 'none';
-
+}
+async function handlePayment(e){
+    e.preventDefault();
+    // const userId =
+    const data = {};
+    const result = await Api.post("/api/order/create-order", data);
 }
