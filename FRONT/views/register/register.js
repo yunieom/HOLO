@@ -6,25 +6,63 @@ const inputPassword = document.querySelector("#inputPassword");
 const inputPasswordConfirm = document.querySelector("#inputPasswordConfirm");
 const inputName = document.querySelector("#inputName");
 const inputPhone = document.querySelector("#inputPhone");
-const inputAddress = document.querySelector("#inputAddress");
-const addressFindButton = document.querySelector("#addressFindButton");
-const inputDetailedAddress = document.querySelector("#inputDetailedAddress");
+const inputAddress = document.querySelector("#address");
+const inputDetailedAddress = document.querySelector("#detailAddress");
 const inputEmail = document.querySelector("#inputEmail");
+const registerButton = document.querySelector("#registerButton");
+const termAgreement = document.querySelector("#termAgreement");
 
-function disableConfirmButton(){
+function disableConfirmButton() {
     const id = inputId.value;
     idConfirmButton.classList.toggle("disabled", !id);
 }
-async function handleIdConfirm(e){
+
+async function handleIdConfirm(e) {
     e.preventDefault();
     const userId = inputId.value;
-    try{
-        const result = await Api.post("/api/users/check-userid", userId);
-    }catch{
-
+    const data = {userId};
+    try {
+        const result = await Api.post("/api/users/check-userid", data)
+        if (result.isDuplicated) {
+            alert(result.message);
+        } else {
+            // 중복되지 않은 아이디인 경우 id input과 button 비활성화
+            alert(result.message);
+            inputId.classList.replace("form-control", "form-control-plaintext");
+            idConfirmButton.classList.toggle("disabled");
+        }
+    } catch {
+        alert("잘못된 아이디입니다");
     }
 }
+
+async function handleRegister(e) {
+    e.preventDefault();
+    const password = inputPassword.value;
+    const confirmPassword = inputPasswordConfirm.value;
+    if (password !== confirmPassword) {
+        alert("비밀번호가 비밀번호 확인과 갈지 않습니다");
+        return;
+    }
+    const userId = inputId.value;
+    const name = inputName.value;
+    const phoneNumber = inputPhone.value;
+    const address = inputAddress.value + inputDetailedAddress.value;
+    const email = inputEmail.value;
+    const termsAgreed = termAgreement.checked;
+    const data = {userId, password, address, email, phoneNumber, isAdmin: false, name, termsAgreed};
+    try {
+        const result = await Api.post("/api/users/register", data);
+        alert(`${userId}님, 회원가입이 완료되었습니다!`);
+        window.location.href = "/login";
+    } catch(err) {
+        alert(err.message);
+    }
+}
+
 // id 입력 전에 중복확인 버튼 비활성화
 inputId.addEventListener("keyup", disableConfirmButton);
 // 중복확인 버튼 클릭시
 idConfirmButton.addEventListener("click", handleIdConfirm);
+// 회원가입 버튼 클릭시
+registerButton.addEventListener("click", handleRegister);

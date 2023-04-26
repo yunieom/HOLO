@@ -7,22 +7,24 @@ const decreaseBtn = document.getElementById("decrease-btn");
 const increaseBtn = document.getElementById("increase-btn");
 const mainContent = document.querySelector(".main-content");
 const infoBtn = document.getElementById("info");
-
 const productName = document.querySelector(".product-name");
 const price = document.querySelector(".price");
+const totalPrice = document.querySelector(".total-price");
 
 let productQuantity = 1;
 
 async function getData() {
-  const res = await fetch(`/api/products/1`, {
+  const res = await fetch(`/api/products/644778974fdab6097f1927e5`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
 
   const data = await res.json();
+  productName.innerText = data.data.productName;
+  price.innerText = data.data.price;
+  totalPrice.innerText = data.data.price;
+
   console.log(data);
-  productName.innerText = data.productName;
-  price.innerText = data.price;
 
   return data;
 }
@@ -33,7 +35,7 @@ const data = await getData();
 const addCartItemBtnHandler = () => {
   if (menu) {
     const idx = menu.findIndex(
-      (m) => m.orderItems.productName === data.productName
+      (m) => m.orderItems.productName === data.data.productName
     );
     if (idx != -1) {
       // 이미 장바구니에 상품이 있을 때
@@ -48,13 +50,14 @@ const addCartItemBtnHandler = () => {
     addNewProduct(menu);
   }
   window.localStorage.setItem("menu", JSON.stringify(menu));
+  console.log(data.data.price);
 };
 
 const addNewProduct = (menu) => {
   let newProduct = {
     orderItems: {
-      productName: data.productName,
-      price: data.price,
+      productName: data.data.productName,
+      price: data.data.price,
       quantity: productQuantity,
     },
   };
@@ -72,12 +75,14 @@ const decreaseBtnHandler = () => {
   if (quantity.innerText > 1) {
     quantity.innerText = Number(quantity.innerText) - 1;
     productQuantity -= 1;
+    totalPrice.innerText = quantity.innerText * price.innerText;
   }
 };
 
 const increaseBtnHandler = () => {
   quantity.innerText = Number(quantity.innerText) + 1;
   productQuantity += 1;
+  totalPrice.innerText = quantity.innerText * price.innerText;
 };
 
 // 상품 상세페이지 HTML
