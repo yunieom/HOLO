@@ -1,23 +1,26 @@
 const cartItem = document.querySelector(".cart-item");
-const purchaseBtn = document.querySelector(".purchase-btn");
+const purchaseBtn = document.querySelector(".btn.btn-primary.purchase-btn");
 const cartContainer = document.querySelector(".cart-container");
 const checkAll = document.getElementById("allCheck");
 const totalPriceText = document.querySelector(".total-price");
 const decreaseBtn = document.querySelector(".decrease-btn");
 const increaseBtn = document.querySelector(".increase-btn");
-const menu = JSON.parse(localStorage.getItem("menu"));
+const removeProductBtn = document.querySelector(".btn.btn-success.remove");
+const productAmount = document.querySelector(".product-amount");
 
+const menu = JSON.parse(localStorage.getItem("menu"));
 let totalPrice = 0;
+
+productAmount.innerText = `일반구매(${menu.length})`;
 
 const paintCart = (item) => {
   const { productName, price, quantity } = item.orderItems;
-  totalPrice += Number(price) * quantity;
 
-  const paintProduct = ` <div class="container text-left li" >
+  const paintProduct = ` <div class="container text-left li"  >
   <div class="row">
   <div class="col">
   <div class="form-check">
-  <input class="form-check-input painted" type="checkbox" id="defaultCheck1">
+  <input class="form-check-input painted" type="checkbox" id="defaultCheck1" data-id='${productName}'>
   <label class="form-check-label" for="defaultCheck1">
   <p class="cart-item">${productName}</p>
   </label>
@@ -45,38 +48,19 @@ const paintCart = (item) => {
   </div>
   
   <div class="col">
-  <p class="product-price" >${price}</p>
+  <p class="product-price" >${price * quantity}원</p>
   </div>
   <div class="col">
   <div>3,000원</div>
   </div>
   </div>
   </div>`;
+  totalPrice += price * quantity;
   cartContainer.insertAdjacentHTML("beforeend", paintProduct);
 };
 
 menu.forEach(paintCart);
-
-// const productQuantity = document
-//   .querySelectorAll(".item-count")
-//   .forEach((el) => {
-//     // item-count, decrease, increase
-//     let quantity = el.querySelector(".quantity");
-//     let productPrice = document.querySelector(".product-price");
-//     console.log(typeof productPrice);
-//     el.addEventListener("click", (e) => {
-//       // console.log(e.target.classList.contains("increase-btn"));
-//       if (e.target.classList.contains("increase-btn")) {
-//         quantity.innerText = Number(quantity.innerText) + 1;
-//         productPrice.innerText =
-//           Number(productPrice.innerText) * quantity.innerText;
-//       } else {
-//         if (quantity.innerText > 1) {
-//           quantity.innerText = Number(quantity.innerText) - 1;
-//         }
-//       }
-//     });
-//   });
+totalPriceText.innerText = `${totalPrice}원`;
 
 const checkBoxs = document.querySelectorAll(".form-check-input.painted");
 
@@ -92,29 +76,16 @@ const checkAllHandler = (e) => {
   }
 };
 
-const purchaseBtnHandler = (e) => {
-  if (e.target.checked == False) {
-  } else {
-  }
-  // 1. 현재 선택된 장바구니 정보 가져오기
-  // 2. 주문 데이터로 저장
-  // 3. 결제페이지로 이동
-};
-
-// const decreaseBtnHandler = () => {
-//   if (quantity.innerText > 1) {
-//     quantity.innerText = Number(quantity.innerText) - 1;
-//     productQuantity -= 1;
-//     totalPrice.innerText = quantity.innerText * price.innerText;
-//   }
-// };
-
 const increaseBtnHandler = (el, originPrice) => {
   let quantity = el.querySelector(".quantity");
   let productPrice = el.querySelector(".product-price");
 
   quantity.innerText = Number(quantity.innerText) + 1;
-  productPrice.innerText = originPrice * Number(quantity.innerText);
+  productPrice.innerText = originPrice * Number(quantity.innerText) + "원";
+  totalPriceText.innerText =
+    Number(totalPriceText.innerText.replace(/[^0-9]/g, "")) +
+    originPrice +
+    "원";
 };
 
 const decreaseBtnHandler = (el, originPrice) => {
@@ -123,28 +94,47 @@ const decreaseBtnHandler = (el, originPrice) => {
 
   if (quantity.innerText > 1) {
     quantity.innerText = Number(quantity.innerText) - 1;
-    productPrice.innerText = originPrice * Number(quantity.innerText);
+    productPrice.innerText = originPrice * Number(quantity.innerText) + "원";
   }
+  totalPriceText.innerText =
+    Number(totalPriceText.innerText.replace(/[^0-9]/g, "")) -
+    originPrice +
+    "원";
 };
 
-purchaseBtn.addEventListener("click", purchaseBtnHandler);
+const productLi = document.querySelectorAll(".container.text-left.li");
+const checkedLi = new Set();
 checkAll.addEventListener("change", checkAllHandler);
 
-const productLi = document.querySelectorAll(".container.text-left.li");
-
 productLi.forEach((el) => {
-  const originPrice = Number(el.querySelector(".product-price").innerText);
+  const originPrice =
+    Number(
+      el.querySelector(".product-price").innerText.replace(/[^0-9]/g, "")
+    ) / Number(el.querySelector(".quantity").innerText);
 
   el.addEventListener("click", (e) => {
     if (e.target.classList.contains("increase-btn")) {
       increaseBtnHandler(el, originPrice);
     } else if (e.target.classList.contains("decrease-btn")) {
       decreaseBtnHandler(el, originPrice);
+    } else if (e.target.classList.contains("form-check-input")) {
+      if (e.target.checked) {
+        checkedLi.add(e.target);
+      }
     }
   });
 });
 
-// TODO
-
-// 삭제하기 버튼 click => 체크된 상품 삭제하기
-// 상품 금액
+removeProductBtn.addEventListener("click", () => {
+  const nonCheckedProducts = menu.filter(({ orderItems }) => {
+    const productName = orderItems.productName;
+    return !Array.from(checkedLi).some(
+      (input) => input.dataset.id == productName
+    );
+  });
+  if (nonCheckedProducts.length > 0) {
+    console.log(nonCheckedProducts);
+    localStorage.setItem("menu", JSON.stringify(nonCheckedProducts));
+    location.reload();
+  }
+});
