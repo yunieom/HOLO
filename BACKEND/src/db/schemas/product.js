@@ -1,5 +1,5 @@
 // product 스키마
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const productSchema = new Schema(

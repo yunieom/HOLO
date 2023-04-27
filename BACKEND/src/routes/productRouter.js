@@ -1,4 +1,4 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const router = Router();
 const productService = require('../service/productService');
 const upload = require('../middlewares/multer');
@@ -26,20 +26,20 @@ router.delete('/admin/:productId', loginRequired, isAdmin, productService.delete
 
 // ********** 사용자 관련 페이지 입니다. **********
 // 사용자 카테고리목록 조회, 됨
-router.get('/', productService.getCategoryList) 
+router.get("/", productService.getCategoryList);
 
 // 사용자 카테고리별 상품 조회, 됨
 // categoryId는 육류, 채소류 등등 입니다.
-router.get('/category/:categoryId', productService.getProductList)
+router.get("/category/:categoryId", productService.getProductList);
 
 // 사용자 할인상품 조회
-router.get('/discount', productService.getDiscountedProducts)
+router.get("/discount", productService.getDiscountedProducts);
 
 // 사용자 인기상품 조회
-router.get('/popular', productService.getPopularProducts)
+router.get("/popular", productService.getPopularProducts);
 
 // 사용자 상품 상세페이지
-router.get('/:productId', productService.getProductDetail)
+router.get("/:productId", productService.getProductDetail);
 
 
 module.exports = router;
