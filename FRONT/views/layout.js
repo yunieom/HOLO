@@ -34,7 +34,7 @@ function initEventListeners() {
 }
 function insertHeader() {
   const header = `
-    <header class="container">
+    <header class="container header">
       <div class="top-header">
         <div class="header-logo">
           <img src="/images/holo_logo(1).png" href="/" alt="HOLO" width="120px" id="logo">
