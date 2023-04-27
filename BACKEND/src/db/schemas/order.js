@@ -26,7 +26,7 @@ const OrderSchema = new Schema(
   {
     userId: {
       type: String,
-      required: true,
+      required: false,
       unique: false,
     },
     email: {
@@ -42,7 +42,9 @@ const OrderSchema = new Schema(
       type: String,
       required: true,
     },
-
+    shippingMemo: {
+      type: String,
+    },
     totalPrice: {
       type: Number,
       required: true,

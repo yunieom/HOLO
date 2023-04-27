@@ -12,6 +12,7 @@ class OrderService {
       cartId,
       orderItems = [],
       shippingAddress,
+      shippingMemo,
       status,
     } = req;
     console.log(req);
@@ -32,6 +33,7 @@ class OrderService {
     }
 
     // 주문 정보 객체 생성
+    let newStatus = status;
     if (isStockAvailable) {
       const newOrder = await orderModel.createOrder({
         userId,
@@ -39,9 +41,10 @@ class OrderService {
         cartId,
         orderItems,
         shippingAddress,
+        shippingMemo,
         totalPrice,
         totalDiscount,
-        status: "pending",
+        status: newStatus || "pending",
       });
       // 상품 재고 감소
       for (const item of orderItems) {

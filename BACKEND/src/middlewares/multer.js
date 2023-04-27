@@ -1,36 +1,31 @@
 const multer = require("multer");
-const path = require("path");
-const fs = require("fs");
-const { v4: uuidv4 } = require("uuid");
 
+// 파일 저장 경로와 파일명 설정
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/images");
+    cb(null, "BACKEND/src/public/images");
   },
   filename: function (req, file, cb) {
-    const ext = path.extname(file.originalname);
-    const filename = uuidv4() + ext;
-    cb(null, filename);
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(
+      null,
+      file.fieldname + "-" + uniqueSuffix + "." + file.mimetype.split("/")[1]
+    );
   },
 });
 
-const fileFilter = (req, file, cb) => {
-  const allowedTypes = ["jpg", "jpeg", "png", "gif"];
-  const fileType = path.extname(file.originalname).substring(1).toLowerCase();
-
-  if (allowedTypes.includes(fileType)) {
-    req.fileValidationError = null;
-    cb(null, true);
-  } else {
-    req.fileValidationError = "jpg,jpeg,png,gif 파일 업로드만 가능합니다.";
-    cb(null, false);
+// 파일 필터링
+const fileFilter = function (req, file, cb) {
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+    return cb(new Error("이미지 파일만 업로드 가능합니다."));
   }
+  cb(null, true);
 };
 
-const imgUpload = multer({
+// multer 미들웨어 설정
+const upload = multer({
   storage: storage,
-  limits: { fileSize: 20 * 1024 * 1024 },
   fileFilter: fileFilter,
 });
 
-module.exports = { imgUpload };
+module.exports = upload;
