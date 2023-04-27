@@ -26,7 +26,7 @@ const productSchema = new Schema({
   longDesc: {
     type: String,
   },
-  imageUrl: [
+  imagePaths: [
     {
       type: String,
       required: true,
@@ -41,22 +41,6 @@ const productSchema = new Schema({
     required: true,
     default: 10,
   },
-  originLabel: {
-    type: String,
-  },
 });
 
 module.exports = productSchema;
-
-// const imageSchema = new Schema({
-//   imageUrl: {
-//     type: String,
-//     required: true
-//   },
-//   thumbnailUrls: [
-//     {
-//       type: String,
-//       required: true,
-//     },
-//   ],
-// });
