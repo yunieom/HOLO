@@ -17,6 +17,12 @@ class ProductModel {
     }
     await product.save();
   }
+
+  async updatePurchaseNum(productId, quantity) {
+    const product = await Product.findById(productId);
+    product.purchaseNum += quantity;
+    await product.save();
+  }
 }
 
 //OrderModel 인스턴스 생성
