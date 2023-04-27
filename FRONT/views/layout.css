@@ -10,7 +10,6 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: #000;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -194,3 +193,29 @@ a:hover {
   /* border: var(--bs-card-border-width) solid var(--bs-card-border-color); */
   border-radius: var(--bs-card-border-radius);
 }
+
+.text-start.fs-4 {
+  color: #263A29;
+  -webkit-animation:blink 1.5s ease-in-out infinite alternate;
+  -moz-animation:blink 1.5s ease-in-out infinite alternate;
+  animation:blink 1.5s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes blink{
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+@-moz-keyframes blink{
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+@keyframes blink{
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+
+
+
+
+
