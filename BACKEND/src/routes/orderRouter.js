@@ -8,8 +8,6 @@ router.post("/create-order", async (req, res) => {
   const orderInfo = req.body;
   try {
     const newOrder = await orderService.createOrder(orderInfo);
-    // 주문 완료 페이지로 리다이렉트
-    // res.redirect("/order-completed");
 
     // 테스트를 위한 코드
     res.status(201).json({
@@ -20,6 +18,12 @@ router.post("/create-order", async (req, res) => {
     console.log(err);
     res.status(400).json({ message: err.message });
   }
+});
+
+// 주문 완료 라우터
+router.get("/order-completed", (req, res) => {
+  const order = req.query.order; // newOrder 객체를 쿼리 파라미터로 전달합니다.
+  res.render("order-completed", { order });
 });
 
 // 주문 상태 변경 라우터
