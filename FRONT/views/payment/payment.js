@@ -17,7 +17,7 @@ async function getData() {
     try {
         return await Api.get('/api/users/user-info');
     } catch (err) {
-        alert(err.message);
+        console.log(err.message);
     }
 }
 // 유저정보 넣어주기
