@@ -58,8 +58,7 @@ const productService = {
   // 관리자 상품 추가
   async addProduct(req, res, next){
     try{
-      const { 
-        productNo, 
+      const {  
         productName, 
         category, 
         price, 
@@ -67,12 +66,10 @@ const productService = {
         shortDesc, 
         longDesc,  
         purchaseNum, 
-        stock, 
-        originLabel } = req.body;
+        stock } = req.body;
       const imagePaths = req.files.map(file => file.path);
 
-      const createInfo = { 
-        productNo, 
+      const createInfo = {  
         productName, 
         category, 
         price, 
@@ -81,8 +78,7 @@ const productService = {
         longDesc, 
         imagePaths, 
         purchaseNum, 
-        stock, 
-        originLabel }
+        stock }
       // 상품명이 중복인지 확인
       const existingProduct = await Product.findOne({ productName });
       if(existingProduct){
@@ -101,7 +97,6 @@ const productService = {
     try{
       const productId = req.params.productId;
       const { 
-        productNo, 
         productName, 
         category, 
         price, 
@@ -109,10 +104,8 @@ const productService = {
         shortDesc, 
         longDesc,  
         purchaseNum, 
-        stock, 
-        originLabel } = req.body;
-      const createInfo = { 
-        productNo, 
+        stock } = req.body;
+      const createInfo = {  
         productName, 
         category, 
         price, 
@@ -120,8 +113,7 @@ const productService = {
         shortDesc, 
         longDesc, 
         purchaseNum, 
-        stock, 
-        originLabel };
+        stock };
       // 같은 상품이 존재하는지 확인
       const existingProduct = await Product.findById(productId);
       if(!existingProduct){

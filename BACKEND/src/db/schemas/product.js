@@ -4,10 +4,6 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema(
   {
-    productNo: {
-      type: String,
-      required: true,
-    },
     productName: {
       type: String,
       required: true,
@@ -45,10 +41,7 @@ const productSchema = new Schema(
       type: Number,
       required: true,
       default: 10,
-    },
-    originLabel: {
-      type: String,
-    },
+    }
   }
 );
 
