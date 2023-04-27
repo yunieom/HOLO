@@ -44,11 +44,19 @@ class ProductModel {
     return products;
   }
 
+
   // 할인율에 따른 상품 조회
   async findByDiscountRate(rate) {
     const products = await Product.find({ discountRate: { $gte: rate } });
     return products;
   }
+
+    // 카테고리에 따른 상품 조회
+    async findByCategory(categoryId) {
+        const products = await Product.find({ categoryId });
+        return products;
+    }
+
 
   // 구매 수량에 따른 상품 조회
   async findByPurchaseNum(num) {
