@@ -4,31 +4,11 @@ const { OrderSchema } = require("../schemas/order");
 //Order 모델 생성
 const Order = mongoose.model("orders", OrderSchema);
 class OrderModel {
-<<<<<<< HEAD
   // 주문 생성
   async createOrder(orderInfo) {
     const createNewOrder = await Order.create(orderInfo);
     return createNewOrder;
   }
-=======
-    // 주문 생성
-    async createOrder(orderInfo) {
-        // 총 주문금액 계산 로직
-        let totalPrice = 0;
-        for (let item of orderInfo.orderItems) {
-            totalPrice += item.price * item.quantity;
-        }
-        orderInfo.totalPrice = totalPrice;
-
-        const createNewOrder = await Order.create(orderInfo);
-        return createNewOrder;
-    };
-    // 주문 조회 (이메일과 orderId로 주문 조회)
-    async getOrder(orderId, email) {
-        if (!email || !orderId) {
-            throw new Error("이메일과 주문번호를 모두 입력해주세요.");
-        }
->>>>>>> dev
 
   // 주문 상태 변경
   async updateOrderStatus(orderId, status) {
