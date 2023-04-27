@@ -55,9 +55,9 @@ function insertHeader() {
               <p>카테고리</p> 
             </div>  
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-              <li><a class="dropdown-item" href="#">카테고리1</a></li>
-              <li><a class="dropdown-item" href="#">카테고리2</a></li>
-              <li><a class="dropdown-item" href="#">카테고리3</a></li>  
+              <li><a class="dropdown-item" href="/productList?categoryId=채소">카테고리1</a></li>
+              <li><a class="dropdown-item" href="/productList?categoryId=야생류">카테고리2</a></li>
+              <li><a class="dropdown-item" href="/productList?categoryId=설치류">카테고리3</a></li>  
             </ul>
           </li>
           <li><a href="#best" id="best">인기 상품</a></li>

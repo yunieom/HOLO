@@ -10,6 +10,7 @@ const productName = document.querySelector(".product-name");
 const price = document.querySelector(".price");
 const totalPrice = document.querySelector(".total-price");
 const purchaseBtn = document.getElementById("purchase-btn");
+const insertImage = document.querySelector(".rounded.float-start");
 
 let cart = JSON.parse(localStorage.getItem("cart"));
 
@@ -23,6 +24,7 @@ async function getData() {
   try {
     const product = await Api.get(`/api/products/${productId}`);
     printData(product);
+    console.log(product);
     return product;
   } catch (e) {}
 }
@@ -31,6 +33,7 @@ function printData(product) {
   productName.innerText = product.productName;
   price.innerText = product.price;
   totalPrice.innerText = product.price;
+  insertImage.src = product.imagePaths[0];
 }
 
 // setStorage
