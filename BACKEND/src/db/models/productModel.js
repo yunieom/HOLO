@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const ProductSchema = require('../schemas/product');
 
-
 // ProductSchema를 기반으로 한 Product Mongoose 모델 생성
 const Product = mongoose.model('products', ProductSchema);
 
@@ -67,7 +66,23 @@ class ProductModel {
         const result = await Product.findByIdAndDelete(productId);
         return result;
     }
-}
+
+    async updateProductStock(productId, quantity) {
+      const product = await Product.findById(productId);
+      if (quantity > 0) {
+        product.stock += quantity;
+      } else {
+        product.stock -= Math.abs(quantity);
+      }
+      await product.save();
+    }
+  
+    async updatePurchaseNum(productId, quantity) {
+      const product = await Product.findById(productId);
+      product.purchaseNum += quantity;
+      await product.save();
+    }
+  }
 
 // ProductModel 인스턴스 생성
 const productModel = new ProductModel();
