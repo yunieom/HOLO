@@ -113,7 +113,6 @@ async function handlePayment(e) {
 }
 // 자동 하이픈
 function autoHypenPhone(e) {
-    console.log('오토하이픈 동작중!');
     let str = e.target.value;
     str = str.replace(/[^0-9]/g, '');
     let tmp = '';
