@@ -88,12 +88,14 @@ async function handlePayment(e) {
     e.preventDefault();
     const userId = receiverName.value;
     const email = receiverEmail.value;
-    const shippingAddress = userAddress.value + detailAddress.value;
+    const shippingAddress = userAddress.value + ' ' + detailAddress.value;
     const shippingMemo = receiverRequirement.value;
+    const status = "pending";
     const data = {
         userId,
         email,
         orderItems,
+        status,
         shippingAddress,
         shippingMemo,
         totalPrice,
@@ -103,6 +105,6 @@ async function handlePayment(e) {
     try {
         await Api.post("/api/order/create-order", data);
     } catch (err) {
-        alert(err.message);
+        console.log(err.message);
     }
 }
