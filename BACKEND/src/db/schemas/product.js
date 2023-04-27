@@ -1,13 +1,9 @@
 // product 스키마
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const productSchema = new Schema(
   {
-    productNo: {
-      type: String,
-      required: true,
-    },
     productName: {
       type: String,
       required: true,
@@ -31,7 +27,7 @@ const productSchema = new Schema(
     longDesc: {
       type: String,
     },
-    imageUrl: [
+    imagePaths: [
       {
         type: String,
         required: true,
@@ -45,24 +41,9 @@ const productSchema = new Schema(
       type: Number,
       required: true,
       default: 10,
-    },
-    originLabel: {
-      type: String,
-    },
+    }
   }
 );
 
 module.exports = productSchema;
 
-// const imageSchema = new Schema({
-//   imageUrl: {
-//     type: String,
-//     required: true
-//   },
-//   thumbnailUrls: [
-//     {
-//       type: String,
-//       required: true,
-//     },
-//   ],
-// });
