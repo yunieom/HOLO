@@ -19,10 +19,10 @@ async function getOrderData() {
             }
             const orderItem = orderItems[i];
             console.log(orderItem.productId);
-            const { productName, price, discountRate } = await findProduct(orderItem.productId);
+            const { productName, price, discountRate, imagePaths } = await findProduct(orderItem.productId);
             const itemContent = `<div class="row border border-dark my-2">
                 <div class="col-3 my-2">
-                    <img src=".." alt="..">
+                    <img src="../${imagePaths[0]}" alt="${productName}" class="img-fluid">
                 </div>
                 <div class="col-9">
                     <div class="fs-4 my-2">${productName}</div>
