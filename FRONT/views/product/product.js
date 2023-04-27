@@ -4,8 +4,8 @@ const addCartItemBtn = document.getElementById("add-cart-item-btn");
 const quantity = document.getElementById("quantity");
 const decreaseBtn = document.getElementById("decrease-btn");
 const increaseBtn = document.getElementById("increase-btn");
-const mainContent = document.querySelector(".main-content");
-const infoBtn = document.getElementById("info");
+// const mainContent = document.querySelector(".main-content");
+// const infoBtn = document.getElementById("info");
 const productName = document.querySelector(".product-name");
 const price = document.querySelector(".price");
 const totalPrice = document.querySelector(".total-price");
@@ -15,17 +15,16 @@ let cart = JSON.parse(localStorage.getItem("cart"));
 
 let productQuantity = 1;
 
-const productId = "644a6eebedfeef88f9240690"; // example productId
+// const productId = "644a6eebedfeef88f9240690"; // example productId
+const url = new URL(window.location.href);
+const productId = url.searchParams.get("productId");
 const product = await getData();
-console.log(product);
 async function getData() {
   try {
     const product = await Api.get(`/api/products/${productId}`);
-    printData(product.data);
-    return product.data;
-  } catch (e) {
-    console.log(e);
-  }
+    printData(product);
+    return product;
+  } catch (e) {}
 }
 
 function printData(product) {
@@ -38,7 +37,9 @@ function printData(product) {
 const addCartItemBtnHandler = async () => {
   if (cart) {
     console.log(cart);
-    const idx = cart.findIndex((m) => productName === product.productName);
+    const idx = cart.findIndex(
+      (m) => m.orderItems.productName === product.productName
+    );
     if (idx != -1) {
       // 이미 장바구니에 상품이 있을 때
       cart[idx].orderItems.quantity += productQuantity;
