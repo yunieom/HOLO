@@ -101,11 +101,13 @@ async function handlePayment(e) {
         totalPrice,
         totalDiscount,
     };
-    console.log(data);
     try {
-        const result = await Api.post("/api/order/create-order", data);
-        console.log(result);
+        const { order } = await Api.post("/api/order/create-order", data);
+        const { _id } = order;
+        const orderId = JSON.stringify({_id : _id, email: email});
+        window.location.href = `/order-completed?orderId=${orderId}`;
     } catch (err) {
+        console.log(`err: ${err}`);
         console.log(err.message);
     }
 }
