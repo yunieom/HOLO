@@ -15,6 +15,7 @@ async function getData(apiUrl, element){
             }
             const { imagePaths, productName, price } = data[i];
             element[i].querySelector('img').src = imagePaths[0];
+            console.log(imagePaths[0]);
             element[i].querySelector('img').alt = `${productName} 사진`;
             element[i].querySelector('div > h5').innerText = productName;
             element[i].querySelector('div > p').innerText = price;
