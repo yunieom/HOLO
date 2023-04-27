@@ -1,11 +1,13 @@
 const { Router } = require("express");
 const router = Router();
 const productService = require('../service/productService');
+const upload = require('../middlewares/multer');
 const isAdmin = require('../middlewares/isAdmin');
+const loginRequired = require('../middlewares/login-required')
 
 // ********** 관리자 페이지 입니다. **********
 // 관리자 카테고리 추가, 됨
-router.post("/admin/category", async (req, res) => {
+router.post("/admin/category", loginRequired, isAdmin, async (req, res) => {
     try {
         const result = await productService.addCategory(req, res);
         res.json(result);
@@ -16,7 +18,7 @@ router.post("/admin/category", async (req, res) => {
 });
 
 // 관리자 카테고리 수정, 됨
-router.patch("/admin/category/:categoryId",isAdmin, async (req, res) => {
+router.patch("/admin/category/:categoryId", loginRequired, isAdmin, async (req, res) => {
     try {
         const result = await productService.updateCategory(req, res);
         res.json(result);
@@ -27,7 +29,7 @@ router.patch("/admin/category/:categoryId",isAdmin, async (req, res) => {
 });
 
 // 관리자 카테고리 삭제, 됨
-router.delete("/admin/category/:categoryId", async (req, res) => {
+router.delete("/admin/category/:categoryId", loginRequired, isAdmin, async (req, res) => {
     try {
         const result = await productService.deleteCategory(req, res);
         res.json(result);
@@ -38,7 +40,7 @@ router.delete("/admin/category/:categoryId", async (req, res) => {
 });
 
 // 관리자 상품 추가, 됨
-router.post('/admin', isAdmin, async (req, res) => {
+router.post('/admin', loginRequired, isAdmin, upload.array('image', 10), async (req, res) => {
     try {
         const result = await productService.addProduct(req, res);
         res.json(result);
@@ -49,7 +51,7 @@ router.post('/admin', isAdmin, async (req, res) => {
 });
 
 // 관리자 상품 수정, 됨
-router.patch("/admin/:productId", async (req, res) => {
+router.patch("/admin/:productId", loginRequired, isAdmin, upload.array('image', 10), async (req, res) => {
     try {
         const result = await productService.updateProduct(req, res);
         res.json(result);
@@ -60,7 +62,7 @@ router.patch("/admin/:productId", async (req, res) => {
 });
 
 // 관리자 상품 삭제, 됨
-router.delete("/admin/:productId", async (req, res) => {
+router.delete("/admin/:productId", loginRequired, isAdmin, async (req, res) => {
     try {
         const result = await productService.deleteProduct(req, res);
         res.json(result);
@@ -128,4 +130,5 @@ router.get("/:productId", async (req, res) => {
 });
 
 module.exports = router;
+
 

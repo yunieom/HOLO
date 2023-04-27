@@ -15,10 +15,13 @@ viewsRouter.use("/product", serveStatic("product"));
 viewsRouter.use("/productList", serveStatic("productList"));
 viewsRouter.use("/shoppingCart", serveStatic("shoppingCart"));
 viewsRouter.use("/logout", serveStatic("logout"));
+viewsRouter.use("/order-completed", serveStatic("order-completed"));
 
 viewsRouter.use("/adminpage/product", serveAdminStatic("product"));
 viewsRouter.use("/adminpage/user", serveAdminStatic("user"));
 viewsRouter.use("/adminpage/order", serveAdminStatic("order"));
+
+viewsRouter.use("/public/images", serveImage("/"));
 
 // views 폴더의 최상단 파일 (사진, favicon 등) 라우팅
 viewsRouter.use("/", serveStatic(""));
@@ -36,6 +39,15 @@ function serveAdminStatic(resource) {
     `../../../FRONT/views/adminpage/admin-${resource}.html`
   );
   const option = { index: `admin-${resource}.html` };
+
+  return express.static(resourcePath, option);
+}
+function serveImage(resource){
+  const resourcePath = path.join(
+      __dirname,
+      `../../../public/images`
+  );
+  const option = { index: `${resource}`};
 
   return express.static(resourcePath, option);
 }
