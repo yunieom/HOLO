@@ -59,7 +59,6 @@ async function getData() {
         console.log(err.message);
     }
 }
-
 // 상품정보 가져오기
 function getOrderData() {
     const url = new URL(window.location.href);
