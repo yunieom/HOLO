@@ -11,6 +11,7 @@ const price = document.querySelector(".price");
 const totalPrice = document.querySelector(".total-price");
 const purchaseBtn = document.getElementById("purchase-btn");
 const insertImage = document.querySelector(".rounded.float-start");
+const detailImage = document.querySelector(".detail-image");
 
 let cart = JSON.parse(localStorage.getItem("cart"));
 
@@ -33,7 +34,9 @@ function printData(product) {
   productName.innerText = product.productName;
   price.innerText = product.price;
   totalPrice.innerText = product.price;
-  insertImage.src = product.imagePaths[0];
+  insertImage.src = `../${product.imagePaths[0]}`;
+  detailImage.src = `../${product.imagePaths[1]}`;
+  console.log(product.imagePaths[0]);
 }
 
 // setStorage
@@ -84,9 +87,9 @@ const purchaseBtnHandler = async () => {
         },
       ],
     };
-    console.log(orderitems);
-    const res = await Api.post("/api/order/create-cart", orderitems);
-    console.log(res.json());
+    // console.log(orderitems);
+    //   const res = await Api.post("/api/order/create-cart", orderitems);
+    //   console.log(res.json());
   } catch (e) {
     console.log(e);
   }

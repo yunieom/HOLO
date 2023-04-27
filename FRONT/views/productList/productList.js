@@ -3,6 +3,7 @@ import * as Api from "../api.js";
 const hotItems = document.querySelectorAll("#hotItems > li");
 const discountItems = document.querySelectorAll("#discountItems > li");
 const categoryItem = document.getElementById("categoryItem");
+const categoryTitle = document.querySelector(".text-start.fs-4.mt-5");
 
 // await getData("/api/products/popular", hotItems);
 // await getData("/api/products/discount", discountItems);
@@ -11,7 +12,7 @@ const paintCategory = (productList) => {
     categoryItem.innerHTML += `
     <li class="card col-md-3 col-6 pt-2" data-id=${product._id}>
     <img
-      src="../images/product.jpg"
+      src=../${product.imagePaths[0]}
       class="card-img-top"
       alt=${product.productName}
     />
@@ -26,6 +27,7 @@ const paintCategory = (productList) => {
 async function getCategoryData() {
   const url = new URL(window.location.href);
   const categoryId = url.searchParams.get("categoryId");
+  categoryTitle.innerHTML = categoryId;
   console.log(categoryId);
   // element.querySelector("ul") =
 
