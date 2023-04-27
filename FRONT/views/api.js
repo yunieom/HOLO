@@ -41,6 +41,7 @@ async function post(endpoint, data) {
     },
     body: bodyData,
   });
+  console.log(res);
 
   // 응답 코드가 4XX 계열일 때 (400, 403 등)
   if (!res.ok) {
@@ -51,6 +52,7 @@ async function post(endpoint, data) {
   }
 
   const result = await res.json();
+  console.log(result);
 
   return result;
 }

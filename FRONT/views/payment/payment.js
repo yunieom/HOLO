@@ -103,7 +103,8 @@ async function handlePayment(e) {
     };
     console.log(data);
     try {
-        await Api.post("/api/order/create-order", data);
+        const result = await Api.post("/api/order/create-order", data);
+        console.log(result);
     } catch (err) {
         console.log(err.message);
     }
