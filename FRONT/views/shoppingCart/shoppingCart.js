@@ -82,6 +82,13 @@ const checkAllHandler = (e) => {
 const increaseBtnHandler = (el, originPrice) => {
   let quantity = el.querySelector(".quantity");
   let productPrice = el.querySelector(".product-price");
+  let productName = el.querySelector(".form-check-input").dataset.id;
+
+  cart.filter(
+    (item) => item.orderItems.productName === productName
+  )[0].orderItems.quantity += 1;
+
+  localStorage.setItem("cart", JSON.stringify(cart));
 
   quantity.innerText = Number(quantity.innerText) + 1;
   productPrice.innerText = originPrice * Number(quantity.innerText) + "원";
@@ -94,6 +101,13 @@ const increaseBtnHandler = (el, originPrice) => {
 const decreaseBtnHandler = (el, originPrice) => {
   let quantity = el.querySelector(".quantity");
   let productPrice = el.querySelector(".product-price");
+  let productName = el.querySelector(".form-check-input").dataset.id;
+
+  cart.filter(
+    (item) => item.orderItems.productName === productName
+  )[0].orderItems.quantity -= 1;
+
+  localStorage.setItem("cart", JSON.stringify(cart));
 
   if (quantity.innerText > 1) {
     quantity.innerText = Number(quantity.innerText) - 1;
