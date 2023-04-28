@@ -90,7 +90,7 @@
 - Discord : 팀원간 커뮤니케이션 및 매일 아침 스크럼 진행
 - Gitlab : Code Repository
 - Gitlab Issue : Trouble Shooting 내역 기제
-- Gitlab Wiki : 🔗[스크럼 회의내용 정리](https://kdt-gitlab.elice.io/sw_track/class_04/web_project/team11/holo/-/wikis/%ED%9A%8C%EC%9D%98%EB%A1%9D)
+- Gitlab Wiki : 🔗[프로젝트 과정 기록](https://kdt-gitlab.elice.io/sw_track/class_04/web_project/team11/holo/-/wikis/%ED%9A%8C%EC%9D%98%EB%A1%9D)
 - Postman Teams : API 테스트 진행
 
 ## Scrum
