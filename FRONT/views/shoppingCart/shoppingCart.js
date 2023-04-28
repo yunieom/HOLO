@@ -1,5 +1,5 @@
 const cartItem = document.querySelector(".cart-item");
-const purchaseBtn = document.querySelector(".btn.btn-primary.purchase-btn");
+const purchaseBtn = document.querySelector(".purchase-btn");
 const cartContainer = document.querySelector(".cart-container");
 const checkAll = document.getElementById("allCheck");
 const totalPriceText = document.querySelector(".total-price");
@@ -8,6 +8,7 @@ const increaseBtn = document.querySelector(".increase-btn");
 const removeProductBtn = document.querySelector(".btn.btn-success.remove");
 const productAmount = document.querySelector(".product-amount");
 const checkTotal = document.querySelector(".form-check-label.all");
+const removeAllBtn = document.querySelector(".btn.btn-warning.remove-all");
 
 const cart = JSON.parse(localStorage.getItem("cart"));
 let totalPrice = 0;
@@ -186,4 +187,9 @@ const purchaseBtnHandler = (e) => {
   }
 };
 
+const removeAllBtnHandler = () => {
+  localStorage.clear();
+};
+
 purchaseBtn.addEventListener("click", purchaseBtnHandler);
+removeAllBtn.addEventListener("click", removeAllBtnHandler);
