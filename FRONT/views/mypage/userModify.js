@@ -1,10 +1,26 @@
+import * as Api from "../api.js";
 const passwordInput = document.querySelector("#password");
 const passwordCheckBtn = document.querySelector("#passwordCheckBtn");
 const userModifyForm = document.querySelector("#userModify form");
+const userId = document.querySelector("#userId");
 let newPasswordInput;
 let newPasswordCheckInput;
+let phoneNumberInput;
 passwordInput.addEventListener("input", handlePasswordInputCheck);
 passwordCheckBtn.addEventListener("click", handlePasswordCheck);
+
+const user = await getUserData();
+console.log(user);
+async function getUserData() {
+  try {
+    const data = await Api.get("/api/users/user-info");
+    userId.value = data.userId;
+    return data;
+  } catch (e) {
+    alert(e.message);
+    location.href = "/";
+  }
+}
 
 function handlePasswordInputCheck(e) {
   if (e.target.value.length < 8) {
@@ -14,20 +30,21 @@ function handlePasswordInputCheck(e) {
   }
 }
 
-function handlePasswordCheck(e) {
+async function handlePasswordCheck(e) {
   e.preventDefault();
-
-  // 비밀번호 확인 요청 추가 작업 필요
-
-  // 비밀번호 확인 성공 시 회원정보 수정 폼 innerHTML 변경, 회원 정보 전달 추가 작업 필요
-  if (true) {
+  try {
+    const res = await Api.post("/api/users/check-password", {
+      currentPassword: passwordInput.value,
+    });
     renderUserModifyForm();
-  } else {
-    alert("비밀번호가 일치하지 않습니다.");
+  } catch (e) {
+    alert(e.message);
+    return;
   }
 }
 
 function renderUserModifyForm() {
+  const { userId, name, phoneNumber, address, email } = user;
   const form = `
     <div class="mb-3 row">
       <label for="userId" class="col-sm-4 col-form-label">아이디</label>
@@ -37,7 +54,7 @@ function renderUserModifyForm() {
           readonly
           class="form-control-plaintext"
           id="userId"
-          value="elice"
+          value="${userId}"
         />
       </div>
     </div>
@@ -73,7 +90,7 @@ function renderUserModifyForm() {
           type="text"
           class="form-control-plaintext"
           id="name"
-          value="elice"
+          value="${name}"
         />
       </div>
     </div>
@@ -85,7 +102,7 @@ function renderUserModifyForm() {
           type="text"
           class="form-control-plaintext"
           id="phoneNumber"
-          value="010-1234-5678"
+          value="${phoneNumber}"
         />
       </div>
       <div class="col-sm-3 btn-container">
@@ -106,7 +123,7 @@ function renderUserModifyForm() {
           type="email"
           class="form-control-plaintext"
           id="email"
-          value="elice@test.com"
+          value="${email}"
         />
       </div>
     </div>
@@ -133,9 +150,9 @@ function addFormEventListeners() {
   newPasswordInput = document.querySelector("#newPassword");
   newPasswordCheckInput = document.querySelector("#newPasswordCheck");
   const modifyPhoneNumberBtn = document.querySelector("#modifyPhoneNumberBtn");
-  const phoneNumberInput = document.querySelector("#phoneNumber");
+  phoneNumberInput = document.querySelector("#phoneNumber");
   const saveBtn = document.querySelector("#saveBtn");
-
+  const withdrawalBtn = document.querySelector("#withdrawalBtn");
   modifyPhoneNumberBtn.addEventListener(
     "click",
     modifyPhoneNumber(phoneNumberInput)
@@ -144,6 +161,8 @@ function addFormEventListeners() {
   // 비밀번호 확인
   newPasswordInput.addEventListener("keyup", checkNewPassword);
   newPasswordCheckInput.addEventListener("keyup", checkNewPassword);
+  saveBtn.addEventListener("click", handleSave);
+  withdrawalBtn.addEventListener("click", handleWithdrawal);
 }
 
 function checkNewPassword() {
@@ -174,3 +193,32 @@ const modifyPhoneNumber = (phoneNumberInput) => (e) => {
   phoneNumberInput.className = "form-control";
   phoneNumberInput.focus();
 };
+
+async function handleSave(e) {
+  try {
+    const data = {
+      password: newPassword.value,
+      phoneNumber: phoneNumberInput.value,
+    };
+    const res = await Api.patch("/api/users/update-user-info", "", data);
+    console.log(res);
+    // alert("회원정보가 수정되었습니다.");
+    // location.reload();
+  } catch (err) {
+    alert(err.message);
+  }
+}
+
+async function handleWithdrawal(e) {
+  e.preventDefault();
+  try {
+    await Api.delete("/api/users/delete-user-info");
+    const res = confirm("정말로 탈퇴하시겠습니까?");
+    if (!res) return;
+    alert("회원탈퇴가 완료되었습니다.");
+    sessionStorage.clear();
+    location.href = "/";
+  } catch (err) {
+    alert(err.message);
+  }
+}
