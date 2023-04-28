@@ -2,12 +2,7 @@
 
 ## 프로젝트 주제
 
-![image](/uploads/983b3d3caf88ec548a4fd15d8a0e465a/image.png)
-
-## 페르소나
-
-![image](/uploads/a848367e8e36036dcb8f1847a8f0d237/image.png)
-![image](/uploads/6c12adc095bff723c4a938eda9270d1d/image.png)
+![no.11_그렇팀](/uploads/9b82a087b57e3c59ec480b8ca5665d66/no.11_그렇팀.jpg)
 
 <br />
 
@@ -20,18 +15,13 @@
 3. 장바구니에 상품을 추가할 수 있으며, **장바구니에서 바로 결제** 작업이 가능함.
 4. 장바구니는 서버 DB가 아닌, 프론트 단에서 저장 및 관리됨 (local Storage)
 5. 장바구니에서 주문을 진행하며, **주문 완료 후 조회 및 삭제**가 가능함.
-6. nodemailer gmail을 활용한 관리자의 회원 삭제, 주문 취소시 **이메일 발송기능** 구현.
+6. **nodemailer gmail**을 활용해 관리자의 회원 삭제, 주문 취소시 **이메일 발송기능** 구현.
 
 <br />
 
-## 데모 사이트
+## 데모 사이트 (로고를 클릭하면 사이트로 이동합니다)
 
-- http://kdt-sw-4-team11.elicecoding.com/
-<div>
-
-![image](/uploads/36f1b4258d72b801700b661592bf7985/image.png)
-
-</div>
+[![holo_logo_1_](/uploads/1e66457403897161f2385da96d4d592a/holo_logo_1_.png)](http://kdt-sw-4-team11.elicecoding.com/)
 
 ### 1-1. API DOCS
 
@@ -55,12 +45,12 @@
 
 | 이름 | 담당 업무 |
 | :--: | :------: |
-| 엄윤주 | BE (팀장) |
-| 노재열 | BE |
-| 임정훈 | BE |
-| 최현준 | FE |
-| 이하경 | FE |
-| 김소현 | FE |
+| ⭐️엄윤주⭐️ | BE (팀장) |
+| ⭐️노재열⭐️ | BE |
+| ⭐️임정훈⭐️ | BE |
+| ⭐️최현준⭐️ | FE |
+| ⭐️이하경⭐️ | FE |
+| ⭐️김소현⭐️ | FE |
 
 ### 프론트엔드
 
