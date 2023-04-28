@@ -16,8 +16,11 @@ function renderUsers(users) {
         <tr>
           <td>${user.userId}</td>
           <td>${user.name}</td>
+          <td>${user.createDate?.split("T")[0]}</td>
           <td>
-            <button class="btn btn-outline-success delete-btn" data-id="${user.userId}">삭제</button>
+            <button class="btn btn-outline-success delete-btn" data-id="${
+              user.userId
+            }">삭제</button>
           </td>
         </tr>
       `;
