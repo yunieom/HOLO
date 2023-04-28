@@ -12,7 +12,7 @@ async function getOrderData() {
         const { order } = await Api.get(`/api/order/find-orders/${_id}/${email}`);
         const { orderItems, totalPrice, totalDiscount } = order;
         console.log(orderItems);
-        document.querySelector("#totalPrice").innerText = `${totalPrice - totalDiscount} 원`
+        document.querySelector("#totalPrice").innerText = `${totalPrice - totalDiscount + 3000} 원`
         for(let i = 0; i < orderItems.length; i++){
             if(i > 2){
                 break;
