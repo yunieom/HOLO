@@ -14,7 +14,7 @@ const cart = JSON.parse(localStorage.getItem("cart"));
 console.log(cart);
 
 let totalPrice = 0;
-productAmount.innerText = `일반구매(${cart.length})`;
+productAmount.innerText = `장바구니 상품(${cart.length})`;
 
 const paintCart = (item) => {
   const { productName, price, quantity } = item.orderItems;
