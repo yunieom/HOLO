@@ -15,6 +15,10 @@ async function getOrderData() {
         document.querySelector("#totalPrice").innerText = `${totalPrice - totalDiscount + 3000} 원`
         for(let i = 0; i < orderItems.length; i++){
             if(i > 2){
+                const itemNumber = `<div class="text-end">
+                <div class="fs-5">외 ${orderItems.length - 3}개</div>
+            </div>`
+                document.querySelector("#shippingPrice").insertAdjacentHTML("beforebegin", itemNumber);
                 break;
             }
             const orderItem = orderItems[i];
