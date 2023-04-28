@@ -3,7 +3,7 @@ import * as Api from '../api.js';
 // 1. 주문정보 가져오기
 // 2. 상품 요소 만들기
 // 3. 결제금액 연결
-getOrderData();
+await getOrderData();
 
 async function getOrderData() {
     const url = new URL(window.location.href);
