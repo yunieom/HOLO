@@ -1,5 +1,5 @@
 const cartItem = document.querySelector(".cart-item");
-const purchaseBtn = document.querySelector(".btn.btn-primary.purchase-btn");
+const purchaseBtn = document.querySelector(".purchase-btn");
 const cartContainer = document.querySelector(".cart-container");
 const checkAll = document.getElementById("allCheck");
 const totalPriceText = document.querySelector(".total-price");
@@ -7,10 +7,13 @@ const decreaseBtn = document.querySelector(".decrease-btn");
 const increaseBtn = document.querySelector(".increase-btn");
 const removeProductBtn = document.querySelector(".btn.btn-success.remove");
 const productAmount = document.querySelector(".product-amount");
+const checkTotal = document.querySelector(".form-check-label.all");
+const removeAllBtn = document.querySelector(".btn.btn-warning.remove-all");
 
 const cart = JSON.parse(localStorage.getItem("cart"));
-let totalPrice = 0;
+console.log(cart);
 
+let totalPrice = 0;
 productAmount.innerText = `일반구매(${cart.length})`;
 
 const paintCart = (item) => {
@@ -36,7 +39,7 @@ const paintCart = (item) => {
   >
   -
   </button>
-  <p class="quantity">${quantity}</p>
+  <p class="quantity asdf">${quantity}</p>
   <button
   type="button"
   class="btn btn-secondary btn-sm increase-btn"
@@ -49,9 +52,6 @@ const paintCart = (item) => {
   
   <div class="col">
   <p class="product-price" >${price * quantity}원</p>
-  </div>
-  <div class="col">
-  <div>3,000원</div>
   </div>
   </div>
   </div>`;
@@ -68,10 +68,12 @@ const checkAllHandler = (e) => {
   if (e.target.checked) {
     checkBoxs.forEach((checkbox) => {
       checkbox.checked = true;
+      checkedLi.add(checkbox);
     });
   } else {
     checkBoxs.forEach((checkbox) => {
       checkbox.checked = false;
+      checkedLi.clear();
     });
   }
 };
@@ -79,6 +81,13 @@ const checkAllHandler = (e) => {
 const increaseBtnHandler = (el, originPrice) => {
   let quantity = el.querySelector(".quantity");
   let productPrice = el.querySelector(".product-price");
+  let productName = el.querySelector(".form-check-input").dataset.id;
+
+  cart.filter(
+    (item) => item.orderItems.productName === productName
+  )[0].orderItems.quantity += 1;
+
+  localStorage.setItem("cart", JSON.stringify(cart));
 
   quantity.innerText = Number(quantity.innerText) + 1;
   productPrice.innerText = originPrice * Number(quantity.innerText) + "원";
@@ -91,6 +100,13 @@ const increaseBtnHandler = (el, originPrice) => {
 const decreaseBtnHandler = (el, originPrice) => {
   let quantity = el.querySelector(".quantity");
   let productPrice = el.querySelector(".product-price");
+  let productName = el.querySelector(".form-check-input").dataset.id;
+
+  cart.filter(
+    (item) => item.orderItems.productName === productName
+  )[0].orderItems.quantity -= 1;
+
+  localStorage.setItem("cart", JSON.stringify(cart));
 
   if (quantity.innerText > 1) {
     quantity.innerText = Number(quantity.innerText) - 1;
@@ -104,6 +120,7 @@ const decreaseBtnHandler = (el, originPrice) => {
 
 const productLi = document.querySelectorAll(".container.text-left.li");
 const checkedLi = new Set();
+
 checkAll.addEventListener("change", checkAllHandler);
 
 productLi.forEach((el) => {
@@ -120,6 +137,8 @@ productLi.forEach((el) => {
     } else if (e.target.classList.contains("form-check-input")) {
       if (e.target.checked) {
         checkedLi.add(e.target);
+      } else {
+        checkedLi.delete(e.target);
       }
     }
   });
@@ -132,9 +151,52 @@ removeProductBtn.addEventListener("click", () => {
       (input) => input.dataset.id == productName
     );
   });
-  if (nonCheckedProducts.length > 0) {
-    console.log(nonCheckedProducts);
+  if (nonCheckedProducts.length >= 0) {
     localStorage.setItem("cart", JSON.stringify(nonCheckedProducts));
     location.reload();
   }
 });
+
+const purchaseBtnHandler = (e) => {
+  const checkedProducts = cart.filter(({ orderItems }) => {
+    const productName = orderItems.productName;
+    return Array.from(checkedLi).some(
+      (input) => input.dataset.id == productName
+    );
+  });
+  console.log(checkedProducts);
+  if (checkedProducts.length >= 1) {
+    e.preventDefault();
+
+    const itemArray = [];
+
+    checkedProducts.forEach(({ orderItems }) => {
+      let productItem = {
+        productId: orderItems.productId,
+        productName: orderItems.productName,
+        price: orderItems.price,
+        quantity: orderItems.quantity,
+        discountRate: orderItems.discountRate,
+      };
+      itemArray.push(productItem);
+    });
+
+    localStorage.setItem("cart", JSON.stringify(checkedProducts));
+    sessionStorage.setItem("validAccess", "toPayment");
+    window.location.href = `/payment?order=${JSON.stringify(itemArray)}`;
+
+    e.preventDefault();
+  } else if (checkedProducts.length == 0) {
+    alert("구매할 상품을 선택해주세요");
+  }
+};
+
+const removeAllBtnHandler = () => {
+  totalPriceText.innerText = `0원`;
+  productAmount.innerText = `일반구매(0)`;
+  localStorage.clear();
+  document.querySelector(".container.text-left.cart-container").remove();
+};
+
+purchaseBtn.addEventListener("click", purchaseBtnHandler);
+removeAllBtn.addEventListener("click", removeAllBtnHandler);

@@ -30,10 +30,18 @@
   word-wrap: break-word;
   background-color: var(--bs-card-bg);
   background-clip: border-box;
-  /* border: var(--bs-card-border-width) solid var(--bs-card-border-color); */
   border-radius: var(--bs-card-border-radius);
 }
 
 .card {
   cursor: pointer;
+}
+
+.h2.text-start.fs-4.mt-5 {
+  font-size: 1.2rem !important;
+}
+
+.mt-5 {
+  margin-bottom: 1rem !important;
+  margin-top: 2rem !important;
 }

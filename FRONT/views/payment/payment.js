@@ -9,15 +9,23 @@ const detailAddress = document.querySelector("#detailAddress");
 const receiverRequirement = document.querySelector("#receiverRequirement");
 const paymentBtn = document.querySelector("#paymentBtn");
 const isLogin = sessionStorage.getItem('token');
+const isValid = sessionStorage.getItem('validAccess') === 'toPayment';
 
+if (!isValid){
+    window.location.href = '/';
+    alert("잘못된 접근입니다");
+}
+sessionStorage.removeItem('validAccess');
 const {orderItems, totalPrice, totalDiscount} = getOrderData();
 setData(totalPrice, totalDiscount);
 paymentBtn.addEventListener("click", handlePayment);
 receiverPhoneNumber.addEventListener("keyup", autoHypenPhone);
 
+let userIdentification
 // 로그인시에는 구매자 정보 띄워줌
 if (isLogin) {
-    const {name, email, phoneNumber, address} = await getData();
+    const {userId, name, email, phoneNumber, address} = await getData();
+    userIdentification = userId;
     const userInfo = `
     <h2 class="fs-5">구매자 정보</h2>
             <section class="mb-3 border border-dark px-4 py-3">
@@ -80,17 +88,17 @@ function getOrderData() {
 function setData(totalPrice, totalDiscount) {
     document.querySelector("#totalPrice").innerText = `${totalPrice} 원`;
     document.querySelector("#totalDiscount").innerText = `-${totalDiscount} 원`;
-    document.querySelector("#totalDiscountPrice").innerText = `${totalPrice - totalDiscount} 원`;
+    document.querySelector("#totalDiscountPrice").innerText = `${totalPrice - totalDiscount + 3000} 원`;
 }
 
 // 결제완료 페이지로 보내기
 async function handlePayment(e) {
     e.preventDefault();
-    const userId = receiverName.value;
     const email = receiverEmail.value;
     const shippingAddress = userAddress.value + ' ' + detailAddress.value;
     const shippingMemo = receiverRequirement.value;
     const status = "pending";
+    const userId = typeof userIdentification === "undefined" ? receiverName.value : userIdentification;
     const data = {
         userId,
         email,
@@ -105,6 +113,7 @@ async function handlePayment(e) {
         const { order } = await Api.post("/api/order/create-order", data);
         const { _id } = order;
         const orderId = JSON.stringify({_id : _id, email: email});
+        sessionStorage.setItem("validAccess", "toOrderCompleted");
         window.location.href = `/order-completed?orderId=${orderId}`;
     } catch (err) {
         console.log(`err: ${err}`);

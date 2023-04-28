@@ -33,8 +33,8 @@
               <div class="row" style="align-items: center; margin: 0px 0 10px 0;">
                 <div class="col">
                   <div class="form-check">
-                    <input class="form-check-input main" type="checkbox" value="" id="allCheck">
-                    <label class="form-check-label" for="allCheck">
+                    <input class="form-check-input main" type="checkbox" value="" id="allCheck" >
+                    <label class="form-check-label all" for="allCheck">
                       전체선택
                     </label>
                   </div>
@@ -42,9 +42,11 @@
                 <div class="col">
                   <div class="product-amount">일반구매</div>
                 </div>
-
                 <div class="col" style="text-align: center">
                   <button type="button" class="btn btn-success remove">삭제하기</button>
+                </div>
+                <div class="col" style="text-align: center">
+                  <button type="button" class="btn btn-warning remove-all">전체 삭제하기</button>
                 </div>
               </div>
             </div>
@@ -72,9 +74,9 @@
                 <div class="col">
                   <div>상품금액</div>
                 </div>
-                <div class="col">
+                <!-- <div class="col">
                   <div>배송비</div>
-                </div>
+                </div> -->
               </div>
             </div>
            
@@ -91,11 +93,14 @@
           <div class="total-price">000원</div>
         </div>
         <div class="col">
-          <div></div>
+          <div>배송비</div>
+        </div>
+        <div class="col">
+          <div>3,000원</div>
         </div>
         <div class="col">
           <div class="d-grid gap-2" style="text-align: left">
-            <button class="btn btn-primary purchase-btn" type="button">구매하기</button>
+            <button class="btn btn-success purchase-btn" type="button">구매하기</button>
           </div>
         </div>
       </div>
