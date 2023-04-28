@@ -3,7 +3,7 @@ import * as Api from "../api.js";
 const hotItems = document.querySelectorAll("#hotItems > li");
 const discountItems = document.querySelectorAll("#discountItems > li");
 const categoryItem = document.getElementById("categoryItem");
-const categoryTitle = document.querySelector(".text-start.fs-4.mt-5");
+const categoryTitle = document.querySelector(".text-start.fs-3.mt-5");
 
 // await getData("/api/products/popular", hotItems);
 // await getData("/api/products/discount", discountItems);
