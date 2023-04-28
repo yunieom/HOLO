@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema } = require('mongoose');
 
 const UserSchema = new Schema({
     userId: {
@@ -18,24 +17,28 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
     },
     phoneNumber: {
         type: String,
         required: true,
-        unique: false,
     },
     isAdmin: {
         type: Boolean,
         default: false,
     },
-    userName: {
+    name: {
         type: String,
         required: true,
     },
     termsAgreed: {
         type: Boolean,
         required: true,
+    },
+    createDate : {
+        type: Date,
+        default: Date.now()
     }
 });
 
+
+module.exports = UserSchema;

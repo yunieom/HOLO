@@ -1,11 +1,7 @@
 const { Router } = require('express');
 const router = Router();
-<<<<<<< HEAD
-const userService = require('../service/userService');
-=======
-const userService = require('../services/userService'); // 유저 서비스 불러오기
+const userService = require('../service/userService'); // 유저 서비스 불러오기
 const loginRequired = require('../middlewares/login-required'); // 로그인 확인 미들웨어 불러오기 (로그인이 필요한 기능이 있을시 해당 라우터에 사용됨)
->>>>>>> feature-BE-signUp
 
 // 회원가입 라우터
 router.post('/register', async (req, res) => {
@@ -21,20 +17,34 @@ router.post('/register', async (req, res) => {
         // 문제 발생시 오류 전송
     } catch (err) {
         console.log(err);
-        res.status(400).send(`${err}`);
+        res.status(400).json({ message: err.message }); // JSON 형식으로 에러 메시지 반환
     }
 });
 
-<<<<<<< HEAD
-module.exports = router;
-=======
+// 아이디 중복 확인 라우터
+router.post('/check-userid', async (req, res) => {
+    try {
+        const { userId } = req.body;
+        const isDuplicated = await userService.isUserIdDuplicated(userId);
+
+        if (isDuplicated) {
+            res.status(200).json({ message: '중복된 아이디입니다.', isDuplicated: true });
+        } else {
+            res.status(200).json({ message: '사용 가능한 아이디입니다.', isDuplicated: false });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ message: err.message }); // JSON 형식으로 에러 메시지 반환
+    }
+});
+
 // 로그인 라우터
 router.post('/login', async (req, res) => {
     try {
         await userService.login(req.body, res);
     } catch (err) {
         console.log(err);
-        res.status(400).send(`${err}`);
+        res.status(400).json({ message: err.message }); // JSON 형식으로 에러 메시지 반환
     }
 });
 
@@ -45,7 +55,7 @@ router.post('/logout', (req, res) => {
         userService.logout(req, res);
     } catch (err) {
         console.log(err);
-        res.status(400).send(`${err}`);
+        res.status(400).json({ message: err.message }); // JSON 형식으로 에러 메시지 반환
     }
 });
 
@@ -56,7 +66,7 @@ router.get('/user-info', loginRequired, async (req, res) => {
         res.json(user);
     } catch (err) {
         console.log(err);
-        res.status(400).send(`${err}`);
+        res.status(400).json({ message: err.message }); // JSON 형식으로 에러 메시지 반환
     }
 });
 
@@ -72,7 +82,7 @@ router.post('/check-password', loginRequired, async (req, res) => {
         }
     } catch (err) {
         console.log(err);
-        res.status(400).send(`${err}`);
+        res.status(400).json({ message: err.message }); // JSON 형식으로 에러 메시지 반환
     }
 });
 
@@ -83,7 +93,7 @@ router.patch('/update-user-info', loginRequired, async (req, res) => {
         res.json(updatedUser);
     } catch (err) {
         console.log(err);
-        res.status(400).send(`${err}`);
+        res.status(400).json({ message: err.message }); // JSON 형식으로 에러 메시지 반환
     }
 });
 
@@ -94,9 +104,8 @@ router.delete('/delete-user-info', loginRequired, async (req, res) => {
         res.json({ message: '회원 탈퇴가 완료되었습니다.' });
     } catch (err) {
         console.log(err);
-        res.status(400).send(`${err}`);
+        res.status(400).json({ message: err.message }); // JSON 형식으로 에러 메시지 반환
     }
 });
 
 module.exports = router;
->>>>>>> feature-BE-signUp
