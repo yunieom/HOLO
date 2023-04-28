@@ -13,6 +13,7 @@ async function getOrderData() {
         const { orderItems, totalPrice, totalDiscount } = order;
         console.log(orderItems);
         document.querySelector("#totalPrice").innerText = `${totalPrice - totalDiscount + 3000} 원`
+        document.querySelector("#orderId").innerText = `주문번호 : ${_id}`;
         for(let i = 0; i < orderItems.length; i++){
             if(i > 2){
                 const itemNumber = `<div class="text-end">
