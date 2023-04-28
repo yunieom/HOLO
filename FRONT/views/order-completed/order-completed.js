@@ -1,8 +1,12 @@
 import * as Api from '../api.js';
+const isValid = sessionStorage.getItem('validAccess') === 'toOrderCompleted';
 
-// 1. 주문정보 가져오기
-// 2. 상품 요소 만들기
-// 3. 결제금액 연결
+if (!isValid){
+    window.location.href = '/';
+    alert("잘못된 접근입니다");
+}
+sessionStorage.removeItem('validAccess');
+window.onbeforeunload = () => sessionStorage.setItem('validAccess', 'toPayment');
 await getOrderData();
 
 async function getOrderData() {
@@ -13,6 +17,7 @@ async function getOrderData() {
         const { orderItems, totalPrice, totalDiscount } = order;
         console.log(orderItems);
         document.querySelector("#totalPrice").innerText = `${totalPrice - totalDiscount + 3000} 원`
+        document.querySelector("#orderId").innerText = `주문번호 : ${_id}`;
         for(let i = 0; i < orderItems.length; i++){
             if(i > 2){
                 const itemNumber = `<div class="text-end">

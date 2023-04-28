@@ -181,7 +181,10 @@ const purchaseBtnHandler = (e) => {
 
     nonCheckedProducts;
     localStorage.setItem("cart", JSON.stringify(nonCheckedProducts));
-    window.location.href = `/payment/?order=${JSON.stringify(orderitems)}`;
+    sessionStorage.setItem("validAccess", "toPayment");
+    window.location.href = `/payment?order=${JSON.stringify(orderitems)}`;
+
+    e.preventDefault();
   } else if (nonCheckedProducts.length == 0) {
     alert("구매할 상품을 선택해주세요");
   }
