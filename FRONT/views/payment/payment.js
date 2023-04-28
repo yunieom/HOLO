@@ -9,10 +9,17 @@ const detailAddress = document.querySelector("#detailAddress");
 const receiverRequirement = document.querySelector("#receiverRequirement");
 const paymentBtn = document.querySelector("#paymentBtn");
 const isLogin = sessionStorage.getItem('token');
+const isValid = sessionStorage.getItem('validAccess') === 'toPayment';
 
+if (!isValid){
+    history.back();
+    alert("잘못된 접근입니다");
+}
+sessionStorage.removeItem('validAccess');
 const {orderItems, totalPrice, totalDiscount} = getOrderData();
 setData(totalPrice, totalDiscount);
 paymentBtn.addEventListener("click", handlePayment);
+receiverPhoneNumber.addEventListener("keyup", autoHypenPhone);
 
 // 로그인시에는 구매자 정보 띄워줌
 if (isLogin) {
@@ -59,7 +66,6 @@ async function getData() {
         console.log(err.message);
     }
 }
-
 // 상품정보 가져오기
 function getOrderData() {
     const url = new URL(window.location.href);
@@ -80,7 +86,7 @@ function getOrderData() {
 function setData(totalPrice, totalDiscount) {
     document.querySelector("#totalPrice").innerText = `${totalPrice} 원`;
     document.querySelector("#totalDiscount").innerText = `-${totalDiscount} 원`;
-    document.querySelector("#totalDiscountPrice").innerText = `${totalPrice - totalDiscount} 원`;
+    document.querySelector("#totalDiscountPrice").innerText = `${totalPrice - totalDiscount + 3000} 원`;
 }
 
 // 결제완료 페이지로 보내기
@@ -101,10 +107,27 @@ async function handlePayment(e) {
         totalPrice,
         totalDiscount,
     };
-    console.log(data);
     try {
-        await Api.post("/api/order/create-order", data);
+        const { order } = await Api.post("/api/order/create-order", data);
+        const { _id } = order;
+        const orderId = JSON.stringify({_id : _id, email: email});
+        sessionStorage.setItem("validAccess", "toOrderCompleted");
+        window.location.href = `/order-completed?orderId=${orderId}`;
     } catch (err) {
+        console.log(`err: ${err}`);
         console.log(err.message);
+    }
+}
+// 자동 하이픈
+function autoHypenPhone(e) {
+    let str = e.target.value;
+    str = str.replace(/[^0-9]/g, '');
+    let tmp = '';
+    if (str.length < 4) {
+        e.target.value = str;
+    } else if (str.length < 8) {
+        e.target.value = `${str.slice(0, 3)}-${str.slice(3)}`
+    } else {
+        e.target.value = `${str.slice(0, 3)}-${str.slice(3, 7)}-${str.slice(7)}`
     }
 }

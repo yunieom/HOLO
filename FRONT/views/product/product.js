@@ -4,18 +4,19 @@ const addCartItemBtn = document.getElementById("add-cart-item-btn");
 const quantity = document.getElementById("quantity");
 const decreaseBtn = document.getElementById("decrease-btn");
 const increaseBtn = document.getElementById("increase-btn");
-// const mainContent = document.querySelector(".main-content");
-// const infoBtn = document.getElementById("info");
 const productName = document.querySelector(".product-name");
 const price = document.querySelector(".price");
 const totalPrice = document.querySelector(".total-price");
 const purchaseBtn = document.getElementById("purchase-btn");
+const insertImage = document.querySelector(".rounded.float-start");
+const detailImage = document.querySelector(".detail-image");
 
 let cart = JSON.parse(localStorage.getItem("cart"));
 
 let productQuantity = 1;
 
-// const productId = "644a6eebedfeef88f9240690"; // example productId
+// example productId
+// const productId = "644a6eebedfeef88f9240690";
 const url = new URL(window.location.href);
 const productId = url.searchParams.get("productId");
 const product = await getData();
@@ -23,6 +24,8 @@ async function getData() {
   try {
     const product = await Api.get(`/api/products/${productId}`);
     printData(product);
+    printData(product);
+    console.log(product);
     return product;
   } catch (e) {}
 }
@@ -31,6 +34,9 @@ function printData(product) {
   productName.innerText = product.productName;
   price.innerText = product.price;
   totalPrice.innerText = product.price;
+  insertImage.src = `../${product.imagePaths[0]}`;
+  detailImage.src = `../${product.imagePaths[1]}`;
+  console.log(product.imagePaths[0]);
 }
 
 // setStorage
@@ -68,22 +74,20 @@ const addNewProduct = (cart) => {
   cart.push(newProduct);
 };
 
-const purchaseBtnHandler = async () => {
+const purchaseBtnHandler = async (e) => {
   try {
-    const orderitems = {
-      orderItems: [
-        {
-          productId: product._id,
-          productName: product.productName,
-          price: product.price,
-          quantity: productQuantity,
-          discountRate: product.discountRate,
-        },
-      ],
-    };
-    console.log(orderitems);
-    const res = await Api.post("/api/order/create-cart", orderitems);
-    console.log(res.json());
+    e.preventDefault();
+    const orderitems = [
+      {
+        productId: product._id,
+        productName: product.productName,
+        price: product.price,
+        quantity: productQuantity,
+        discountRate: product.discountRate,
+      },
+    ];
+    sessionStorage.setItem("validAccess", "toPayment");
+    window.location.href = `/payment?order=${JSON.stringify(orderitems)}`;
   } catch (e) {
     console.log(e);
   }
@@ -104,14 +108,7 @@ const increaseBtnHandler = () => {
   totalPrice.innerText = quantity.innerText * price.innerText;
 };
 
-// 상품 상세페이지 HTML
-const detailInfo = ` 
-<div class="row">
-<img src="..." class="rounded float-start" alt="이미지" />
-</div>`;
-
 addCartItemBtn.addEventListener("click", addCartItemBtnHandler);
 decreaseBtn.addEventListener("click", decreaseBtnHandler);
 increaseBtn.addEventListener("click", increaseBtnHandler);
 purchaseBtn.addEventListener("click", purchaseBtnHandler);
-// api post
