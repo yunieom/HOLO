@@ -34,17 +34,7 @@ function renderProducts(products) {
     productListContainer.innerHTML += `
 
   <div class="product-container">
-  <div class="form-check">
-    <input
-      class="form-check-input btn-select"
-      type="checkbox"
-      id="product1Checked"
-    />
 
-    <label class="form-check-label" for="product1Checked">
-      <i class="bi bi-check-circle fs-4"></i>
-    </label>
-  </div>
   <div class="order-item shadow-sm p-3 bg-body-tertiary rounded">
     <div class="product-info">
       <div class="product-img">
@@ -120,10 +110,67 @@ function handleCheck(e) {
   // }
 }
 
-function deleteProduct(productId) {
+async function deleteProduct(productId) {
   try {
-    const res = Api.delete(`/api/products/admin/${productId}`);
+    await Api.delete(`/api/products/admin/${productId}`);
     location.reload();
+  } catch (e) {
+    alert(e.message);
+  }
+}
+
+// 상품 등록 버튼 클릭 이벤트
+const modalContent = document.querySelector(".modal-content");
+modalContent.addEventListener("click", handleModalContent);
+
+function handleModalContent(e) {
+  if (e.target.classList.contains("btn-add")) {
+    const formData = new FormData();
+    const productName = document.querySelector("#productName").value;
+    const price = document.querySelector("#price").value;
+    const discountRate = document.querySelector("#discountRate").value;
+    const stock = document.querySelector("#stock").value;
+    const category = document.querySelector("#category").value;
+    const longDesc = document.querySelector("#longDesc").value;
+    const shortDesc = document.querySelector("#shortDesc").value;
+    console.log(
+      productName,
+      price,
+      discountRate,
+      stock,
+      category,
+      longDesc,
+      shortDesc
+    );
+    // const productImg = document.querySelector("#productImg").files[0];
+    // const detailImg = document.querySelector("#productDetailImg").files[0];
+    // const imagePaths = [productImg, detailImg];
+
+    formData.append("productName", productName);
+    formData.append("price", price);
+    formData.append("discountRate", discountRate);
+    formData.append("stock", stock);
+    formData.append("category", category);
+    formData.append("longDesc", longDesc);
+    formData.append("shortDesc", shortDesc);
+    formData.append("purchaseNum", 0);
+    // formData.append("imagePaths", imagePaths);
+
+    registerProduct(formData);
+  }
+}
+
+async function registerProduct(formData) {
+  try {
+    const res = await fetch("/api/products/admin", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+
+    console.log(res);
   } catch (e) {
     alert(e.message);
   }
