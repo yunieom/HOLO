@@ -259,6 +259,12 @@ img#logo {
   border: 0px none;
 }
 
+
+img#logo {
+  margin-left: 6%;
+  width: 120px;
+}
+
 .css-hxorrg {
   display: block;
   padding: 0px 10px;
