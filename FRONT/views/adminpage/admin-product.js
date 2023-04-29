@@ -49,10 +49,7 @@ function renderProducts(products) {
       </div>
     </div>
 
-    <div class="order-item-btn-container">
-      <button type="button" class="btn btn-outline-success btn-modify" data-id="${_id}">
-        수정
-      </button>
+    <div class="product-item-btn-container">
       <button type="button" class="btn btn-outline-success btn-delete" data-id="${_id}" >
         삭제
       </button>
@@ -67,27 +64,27 @@ const checkBtnIcons = document.querySelectorAll(".form-check i");
 const checkBtns = document.querySelectorAll(".form-check .btn-select");
 
 // 전체 선택 버튼 클릭 이벤트
-allCheckBtn.addEventListener("click", handleAllCheck);
+// allCheckBtn.addEventListener("click", handleAllCheck);
 
 productContainers.forEach((productContainer) => {
   productContainer.addEventListener("click", handleCheck);
 });
 
-async function handleAllCheck(e) {
-  if (allCheckBtnIcon.className.split(" ")[1] === "bi-check-circle") {
-    allCheckBtnIcon.className = "bi bi-check-circle-fill fs-4";
-  } else {
-    allCheckBtnIcon.className = "bi bi-check-circle fs-4";
-  }
+// async function handleAllCheck(e) {
+//   if (allCheckBtnIcon.className.split(" ")[1] === "bi-check-circle") {
+//     allCheckBtnIcon.className = "bi bi-check-circle-fill fs-4";
+//   } else {
+//     allCheckBtnIcon.className = "bi bi-check-circle fs-4";
+//   }
 
-  checkBtnIcons.forEach((checkBtnIcon) => {
-    if (allCheckBtnIcon.className.split(" ")[1] === "bi-check-circle-fill") {
-      checkBtnIcon.className = "bi bi-check-circle-fill fs-4";
-    } else {
-      checkBtnIcon.className = "bi bi-check-circle fs-4";
-    }
-  });
-}
+//   checkBtnIcons.forEach((checkBtnIcon) => {
+//     if (allCheckBtnIcon.className.split(" ")[1] === "bi-check-circle-fill") {
+//       checkBtnIcon.className = "bi bi-check-circle-fill fs-4";
+//     } else {
+//       checkBtnIcon.className = "bi bi-check-circle fs-4";
+//     }
+//   });
+// }
 
 // 개별 상품 선택 버튼 클릭 이벤트
 function handleCheck(e) {
