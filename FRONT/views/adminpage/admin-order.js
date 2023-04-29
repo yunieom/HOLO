@@ -104,7 +104,7 @@ function renderOrders(orders) {
           </div>
         </div>
   
-        <div class="order-item-btn-container">
+        <div class="admin-order-item-btn-container">
           <button type="button" class="btn btn-outline-success btn-delivery-modify"  data-bs-toggle="modal" data-bs-target="#deliveryModifyModal${
             order._id
           }" data-status="${order.status}">
