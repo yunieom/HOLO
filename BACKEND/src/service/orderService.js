@@ -4,58 +4,7 @@ const productModel = require("../db/models/productModel"); // product 모델 불
 const loginRequired = require("../middlewares/login-required");
 
 class OrderService {
-  // 주문생성 (테스트완료)
-  // async createOrder(req, res) {
-  //   const {
-  //     userId,
-  //     email,
-  //     orderItems = [],
-  //     shippingAddress,
-  //     shippingMemo,
-  //     status,
-  //   } = req;
-  //   console.log(req);
-
-  //   // totalPrice, totalDiscount 계산
-  //   let totalPrice = 0;
-  //   let totalDiscount = 0;
-  //   let isStockAvailable = true; // 상품 재고 확인용 변수
-  //   for (const item of orderItems) {
-  //     const product = await productModel.getProductById(item.productId);
-  //     if (!product || product.stock < item.quantity) {
-  //       // 상품이 없거나 재고가 충분하지 않은 경우
-  //       isStockAvailable = false;
-  //       break;
-  //     }
-  //     totalPrice += item.price * item.quantity;
-  //     totalDiscount += item.price * (item.discountRate / 100 || 0);
-  //   }
-
-  //   // 주문 정보 객체 생성
-  //   let newStatus = status;
-  //   if (isStockAvailable) {
-  //     const newOrder = await orderModel.createOrder({
-  //       userId,
-  //       email,
-  //       orderItems,
-  //       shippingAddress,
-  //       shippingMemo,
-  //       totalPrice,
-  //       totalDiscount,
-  //       status: newStatus || "pending",
-  //     });
-  //     // 상품 재고 감소 & 구매수 증가
-  //     for (const item of orderItems) {
-  //       await productModel.updateProductStock(item.productId, -item.quantity);
-  //       await productModel.updatePurchaseNum(item.productId, item.quantity);
-  //     }
-  //     // DB에 주문 정보 저장
-  //     return newOrder;
-  //   } else {
-  //     throw new Error("상품 재고가 부족합니다.");
-  //   }
-  // }
-
+  // 주문생성
   async createOrder(req) {
     const {
       userId,
@@ -190,38 +139,6 @@ class OrderService {
       throw new Error("일치하는 주문이 없습니다.");
     }
   }
-  // 회원 주문 수정 (userID)
-  // async updateUserOrder(req, res) {
-  //   const { orderId, updateInfo } = req.body;
-
-  //   // 현재 사용자가 로그인한 상태인지 검사
-  //   if (!req.user) {
-  //     throw new Error("로그인이 필요합니다.");
-  //   }
-
-  //   const currentUserId = req.user.id;
-
-  //   // 주문 정보 조회
-  //   const order = await Order.findOne({ _id: orderId }).lean();
-
-  //   // 주문이 존재하면 업데이트 진행
-  //   if (order) {
-  //     // 현재 사용자의 주문인지 확인
-  //     if (order.userId !== currentUserId) {
-  //       throw new Error("해당 주문에 대한 권한이 없습니다.");
-  //     }
-
-  //     const updatedOrder = await Order.updateOrder(
-  //       orderId,
-  //       order.email,
-  //       updateInfo
-  //     );
-  //     return updatedOrder;
-  //   }
-
-  //   // 주문이 존재하지 않으면 에러 발생
-  //   throw new Error("일치하는 주문이 없습니다.");
-  // }
 
   // 비회원 주문취소 (테스트 완료)
   async cancelOrder(orderId, email) {
