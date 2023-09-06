@@ -41,24 +41,6 @@ router.post("/create-order", async (req, res) => {
   }
 });
 
-// //장바구니 생성 라우터
-// router.post("/create-cart", async (req, res) => {
-//   const orderInfo = req.body;
-//   console.log(orderInfo);
-//   try {
-//     // 'payment' 페이지로 리디렉션합니다.
-//     res.redirect(`/payment?order=${JSON.stringify(orderInfo)}`);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(400).json({ message: err.message });
-//   }
-// });
-
-// //주문 완료 라우터
-// router.get("/order-completed", (req, res) => {
-//   const order = req.query.order; // newOrder 객체를 쿼리 파라미터로 전달합니다.
-//   res.render("/order-completed", { order });
-// });
 
 // 주문 상태 변경 라우터
 router.patch("/:orderId/status", async (req, res, next) => {
