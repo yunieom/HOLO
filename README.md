@@ -2,7 +2,7 @@
 
 ## 프로젝트 주제
 
-![no.11_그렇팀](/uploads/9b82a087b57e3c59ec480b8ca5665d66/no.11_그렇팀.jpg)
+![no.11_그렇팀](https://github.com/yunieom/HOLO/assets/67372083/aa088715-fc9c-42c9-8a17-19a6dc23be0f)
 
 <br />
 
