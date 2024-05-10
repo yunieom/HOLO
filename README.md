@@ -2,7 +2,8 @@
 
 ## 프로젝트 주제
 
-![no.11_그렇팀](/uploads/9b82a087b57e3c59ec480b8ca5665d66/no.11_그렇팀.jpg)
+![no 11_그렇팀](https://github.com/yunieom/HOLO/assets/67372083/aa3df6eb-bee2-4e51-a104-71b0b36339fc)
+
 
 <br />
 
@@ -18,10 +19,10 @@
 6. **nodemailer gmail**을 활용해 관리자의 회원 삭제, 주문 취소시 **이메일 발송기능** 구현.
 
 <br />
+![holo_logo_1_](https://github.com/yunieom/HOLO/assets/67372083/0020600d-538e-43fa-a719-4429c79b0225)
 
-## 데모 사이트 (로고를 클릭하면 사이트로 이동합니다)
 
-[![holo_logo_1_](/uploads/1e66457403897161f2385da96d4d592a/holo_logo_1_.png)](http://kdt-sw-4-team11.elicecoding.com/)
+
 
 ### 1-1. API DOCS
 
@@ -29,13 +30,16 @@
 
 ## Tech Stack
 
-![image](/uploads/377f651701a8b5c0501991051a581b01/image.png)
+<img width="740" alt="image (3)" src="https://github.com/yunieom/HOLO/assets/67372083/ccf8a1f6-ebd5-4016-abb6-92b386ec57c2">
+
 
 <br/>
 
 ## Infra
 
-![image](/uploads/66b4e4a49c42a24c2f90af74581f6a08/image.png)
+<img width="1068" alt="image (4)" src="https://github.com/yunieom/HOLO/assets/67372083/302bf76a-c38d-465d-b251-0753df6d9bb5">
+
+
 
 <br/>
 
@@ -90,7 +94,7 @@
 - Discord : 팀원간 커뮤니케이션 및 매일 아침 스크럼 진행
 - Gitlab : Code Repository
 - Gitlab Issue : Trouble Shooting 내역 기제
-- Gitlab Wiki : 🔗[프로젝트 과정 기록](https://kdt-gitlab.elice.io/sw_track/class_04/web_project/team11/holo/-/wikis/%ED%9A%8C%EC%9D%98%EB%A1%9D)
+- Gitlab Wiki : Daily Scrum Meeting 기록
 - Postman Teams : API 테스트 진행
 
 ## Scrum
