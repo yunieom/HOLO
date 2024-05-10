@@ -1,3 +1,7 @@
+
+![holo_logo_1_](https://github.com/yunieom/HOLO/assets/67372083/0020600d-538e-43fa-a719-4429c79b0225)
+
+
 # 홀로(HOLO) : "1인 가구를 위한 식품 쇼핑몰 프로젝트"
 
 ## 프로젝트 주제
@@ -19,7 +23,6 @@
 6. **nodemailer gmail**을 활용해 관리자의 회원 삭제, 주문 취소시 **이메일 발송기능** 구현.
 
 <br />
-![holo_logo_1_](https://github.com/yunieom/HOLO/assets/67372083/0020600d-538e-43fa-a719-4429c79b0225)
 
 
 
